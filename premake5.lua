@@ -9,7 +9,7 @@ IncludeDir["spdlog"] = "Quasar/vendor/spdlog/include"
 
 workspace "QuasarEngine"
     architecture "x64"
-    startproject "Galaxy"
+    startproject "Sandbox"
     configurations {
         "Debug", "Release", "Distribution"
     }
@@ -60,7 +60,7 @@ project "Quasar"
         }
 
         postbuildcommands {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Galaxy")
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
         }
 
     filter "configurations:Debug"
@@ -81,8 +81,8 @@ project "Quasar"
         buildoptions "/MD"
         optimize "On"
 
-project "Galaxy"
-    location "Galaxy"
+project "Sandbox"
+    location "Sandbox"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++20"

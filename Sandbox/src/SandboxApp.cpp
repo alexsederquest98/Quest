@@ -1,16 +1,16 @@
 #include <Quasar.h>
 
-class Galaxy : public Quasar::Application {
+class Sandbox : public Quasar::Application {
 public:
-	Galaxy() {
+	Sandbox() {
 
 	}
 
-	~Galaxy() {
+	~Sandbox() {
 
 	}
 };
 
 Quasar::Application* Quasar::CreateApplication() {
-	return new Galaxy();
+	return new Sandbox();
 } 

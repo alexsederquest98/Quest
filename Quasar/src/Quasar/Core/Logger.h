@@ -23,15 +23,15 @@ namespace Quasar
 }
 
 // Macros for engine logger for ease of use
-#define QS_CORE_TRACE(...) ::Quasar::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define QS_CORE_INFO(...)  ::Quasar::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define QS_CORE_WARN(...)  ::Quasar::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define QS_CORE_ERROR(...) ::Quasar::Log::GetCoreLogger()->error(__VA_ARGS__)
-//#define QS_CORE_FATAL(...) ::Quasar::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define QS_CORE_TRACE(...) ::Quasar::Logger::GetCoreLogger()->trace(__VA_ARGS__)
+#define QS_CORE_INFO(...)  ::Quasar::Logger::GetCoreLogger()->info(__VA_ARGS__)
+#define QS_CORE_WARN(...)  ::Quasar::Logger::GetCoreLogger()->warn(__VA_ARGS__)
+#define QS_CORE_ERROR(...) ::Quasar::Logger::GetCoreLogger()->error(__VA_ARGS__)
+//#define QS_CORE_FATAL(...) ::Quasar::Logger::GetCoreLogger()->fatal(__VA_ARGS__)
 
 // Macros for client logger for ease of use
-#define QS_TRACE(...) ::Quasar::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define QS_INFO(...)  ::Quasar::Log::GetClientLogger()->info(__VA_ARGS__)
-#define QS_WARN(...)  ::Quasar::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define QS_ERROR(...) ::Quasar::Log::GetClientLogger()->error(__VA_ARGS__)
-//#define QS_FATAL(...) ::Quasar::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define QS_TRACE(...) ::Quasar::Logger::GetClientLogger()->trace(__VA_ARGS__)
+#define QS_INFO(...)  ::Quasar::Logger::GetClientLogger()->info(__VA_ARGS__)
+#define QS_WARN(...)  ::Quasar::Logger::GetClientLogger()->warn(__VA_ARGS__)
+#define QS_ERROR(...) ::Quasar::Logger::GetClientLogger()->error(__VA_ARGS__)
+//#define QS_FATAL(...) ::Quasar::Logger::GetClientLogger()->fatal(__VA_ARGS__)
