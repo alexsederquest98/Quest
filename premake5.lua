@@ -2,7 +2,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to the root (solution)
 IncludeDir = {}
-IncludeDir["GLFW"] = "Quasar/vendor/GLFW/include"
+IncludeDir["glfw"] = "Quasar/vendor/glfw/include"
 IncludeDir["imgui"] = "Quasar/vendor/imgui/"
 IncludeDir["glm"] = "Quasar/vendor/glm"
 IncludeDir["spdlog"] = "Quasar/vendor/spdlog/include"
@@ -15,7 +15,7 @@ workspace "QuasarEngine"
     }
 
 -- Include premake5.lua in vendor libs
-include "Quasar/vendor/GLFW"
+include "Quasar/vendor/glfw"
 
 project "Quasar"
     location "Quasar"
@@ -41,14 +41,14 @@ project "Quasar"
     includedirs {
         "%{prj.name}/src",
         "%{IncludeDir.spdlog}",
-        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.glfw}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.imgui}",
         "$(VULKAN_SDK)/Include"
     }
 
     links {
-        "GLFW",
+        "glfw",
         "$(VULKAN_SDK)/Lib/vulkan-1.lib"
     }
 
@@ -100,7 +100,7 @@ project "Galaxy"
         "Quasar/src",
         "Quasar/vendor/spdlog/include",
         "Quasar/vendor/",
-        "Quasar/vendor/GLFW/include",
+        "Quasar/vendor/glfw/include",
         "Quasar/vendor/glm"
     }
 
