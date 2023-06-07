@@ -1,4 +1,4 @@
-# Quasr Engine
+# Quasar Engine
 Quasar is a WIP 3D/2D game engine built in C++.
 
 _Based on [Hazel](https://github.com/TheCherno/Hazel/tree/master) by The Cherno from his game engine series on Youtube._
