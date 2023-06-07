@@ -2,7 +2,7 @@
 
 #include "Quasar/Core/Application.h"
 //#include "Quasar/Events/ApplicationEvent.h"
-#include "Quasar/Core/Log.h"
+#include "Quasar/Core/Logger.h"
 
 namespace Quasar
 {
