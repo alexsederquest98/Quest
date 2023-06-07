@@ -15,6 +15,9 @@
 
 #include <cstdint>
 
+#include "Quasar/Core/Base.h"
+#include "Quasar/Core/Logger.h"
+
 // Platform specific headers
 #ifdef QS_PLATFORM_WINDOWS
 #include <Windows.h>

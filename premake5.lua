@@ -52,6 +52,11 @@ project "Quasar"
         "$(VULKAN_SDK)/Lib/vulkan-1.lib"
     }
 
+    -- Having an issue with this define it seems
+    defines {
+        "QS_ENABLE_ASSERTS"
+    }
+
     filter "system:windows"
         systemversion "latest"
 
