@@ -1,6 +1,6 @@
-#include <Quasar.h>
+#include <Quest.h>
 
-class Sandbox : public Quasar::Application {
+class Sandbox : public Quest::Application {
 public:
 	Sandbox() {
 
@@ -11,6 +11,6 @@ public:
 	}
 };
 
-Quasar::Application* Quasar::CreateApplication() {
+Quest::Application* Quest::CreateApplication() {
 	return new Sandbox();
 } 

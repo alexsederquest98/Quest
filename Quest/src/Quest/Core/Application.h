@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Quasar/Core/Base.h"
-#include "Quasar/Events/Event.h"
-#include "Quasar/Events/ApplicationEvent.h"
-#include "Quasar/Core/Window.h"
+#include "Quest/Core/Base.h"
+#include "Quest/Events/Event.h"
+#include "Quest/Events/ApplicationEvent.h"
+#include "Quest/Core/Window.h"
 #include <functional>
 
-namespace Quasar
+namespace Quest
 {
 
 	class Application

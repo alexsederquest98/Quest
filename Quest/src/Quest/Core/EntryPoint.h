@@ -1,18 +1,18 @@
 #pragma once
-#include <qspch.h>
-#include "Quasar/Core/Application.h"
+#include <qepch.h>
+#include "Quest/Core/Application.h"
 
-extern Quasar::Application* Quasar::CreateApplication();
+extern Quest::Application* Quest::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	std::cout << "Quasar Engine Initializing..." << std::endl;
+	std::cout << "Quest Engine Initializing..." << std::endl;
 
-	Quasar::Logger::Init();
-	QS_CORE_INFO("Initialized Engine Log.");
-	QS_INFO("Initialized Client Log.");
+	Quest::Logger::Init();
+	QE_CORE_INFO("Initialized Engine Log.");
+	QE_INFO("Initialized Client Log.");
 
-	auto app = Quasar::CreateApplication();
+	auto app = Quest::CreateApplication();
 	app->Run();
 	delete app;
 }

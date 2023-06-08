@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Quasar/Core/Base.h"
-#include "Quasar/Events/Event.h"
+#include "Quest/Core/Base.h"
+#include "Quest/Events/Event.h"
 
 #include <GLFW/glfw3.h>
 #include <string>
 
-namespace Quasar
+namespace Quest
 {
 	struct WindowProperties
 	{
@@ -14,7 +14,7 @@ namespace Quasar
 		uint32_t width;
 		uint32_t height;
 
-		WindowProperties(const std::string& _title = "Quasar Engine", uint32_t  _width = 1920, uint32_t _height = 1080)
+		WindowProperties(const std::string& _title = "Quest Engine", uint32_t  _width = 1920, uint32_t _height = 1080)
 			: title(_title), width(_width), height(_height)
 		{
 		}

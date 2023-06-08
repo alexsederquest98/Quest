@@ -1,11 +1,11 @@
 #pragma once
-#include "Quasar/Core/Base.h"
+#include "Quest/Core/Base.h"
 
 #include <functional>
 #include <string>
 
 // TODO: Eventually change event type from blocking to some kind of queue
-namespace Quasar
+namespace Quest
 {
 	enum class EventType
 	{

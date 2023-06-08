@@ -1,16 +1,16 @@
-#include "qspch.h"
+#include "qepch.h"
 
-#include "Quasar/Core/Window.h"
-#include "Quasar/Events/ApplicationEvent.h"
-#include "Quasar/Events/MouseEvent.h"
-#include "Quasar/Events/KeyEvent.h"
+#include "Quest/Core/Window.h"
+#include "Quest/Events/ApplicationEvent.h"
+#include "Quest/Events/MouseEvent.h"
+#include "Quest/Events/KeyEvent.h"
 
-namespace Quasar
+namespace Quest
 {
 	// GLFW error callback for use in window creation
 	static void GLFWErrorCallback(int error, const char* description)
 	{
-		QS_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+		QE_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
 	Window::Window(const WindowProperties& props)
@@ -29,11 +29,11 @@ namespace Quasar
 		m_Data.width = props.width;
 		m_Data.height = props.height;
 
-		QS_CORE_INFO("Creating Window {0} ({1}, {2})", props.title, props.width, props.height);
+		QE_CORE_INFO("Creating Window {0} ({1}, {2})", props.title, props.width, props.height);
 
 		// Initialize GLFW
 		int success = glfwInit();
-		QS_CORE_ASSERT(success, "Failed to initialize GLFW :(");
+		QE_CORE_ASSERT(success, "Failed to initialize GLFW :(");
 		glfwSetErrorCallback(GLFWErrorCallback);
 
 		// TODO: Setup window hints for the render api here later for debug

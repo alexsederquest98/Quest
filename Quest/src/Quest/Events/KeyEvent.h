@@ -1,10 +1,10 @@
 #pragma once
-#include "Quasar/Events/Event.h"
-#include "Quasar/Core/KeyCodes.h"
+#include "Quest/Events/Event.h"
+#include "Quest/Core/KeyCodes.h"
 
 #include <sstream>
 
-namespace Quasar
+namespace Quest
 {
 	class KeyEvent : public Event
 	{

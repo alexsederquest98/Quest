@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Quasar/Events/Event.h"
+#include "Quest/Events/Event.h"
 
 #include <sstream>
 
-namespace Quasar
+namespace Quest
 {
 	class WindowResizeEvent : public Event
 	{

@@ -1,10 +1,10 @@
-#include "qspch.h"
+#include "qepch.h"
 
-#include "Quasar/Core/Application.h"
-//#include "Quasar/Events/ApplicationEvent.h"
-#include "Quasar/Core/Logger.h"
+#include "Quest/Core/Application.h"
+//#include "Quest/Events/ApplicationEvent.h"
+#include "Quest/Core/Logger.h"
 
-namespace Quasar
+namespace Quest
 {
 	#define BIND_EVENT_CALLBACK(x) std::bind(&Application::x, this, std::placeholders::_1)
 	Application::Application()

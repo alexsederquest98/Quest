@@ -1,13 +1,13 @@
-# Quasar Engine
-Quasar is a WIP 3D/2D game engine built in C++.
+# Quest Engine
+Quest is a WIP 3D/2D game engine built in C++.
 
 _Based on [Hazel](https://github.com/TheCherno/Hazel/tree/master) by The Cherno from his game engine series on Youtube._
 ***
 ## Getting Started
-I recommend using Visual Studio 2022 as that is being used to develop Quasar. It may work on other environments but it is not officially tested or verified.
+I recommend using Visual Studio 2022 as that is being used to develop Quest. It may work on other environments but it is not officially tested or verified.
 
 **1. Downloading the repository**
-Start with cloning the repository with `git clone --recursive https://github.com/alexsederquest98/QuasarEngine.git`
+Start with cloning the repository with `git clone --recursive https://github.com/alexsederquest98/QuestEngine.git`
 The recursive cloning is necessary to add the 3rd-party library submodules. If you did not clone it recursively, you can get the submodules with `git submodule update --init` instead.
 
 **2. Setup the solution**

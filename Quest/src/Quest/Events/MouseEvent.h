@@ -1,10 +1,10 @@
 #pragma once
-#include "Quasar/Events/Event.h"
-#include "Quasar/Core/MouseCodes.h"
+#include "Quest/Events/Event.h"
+#include "Quest/Core/MouseCodes.h"
 
 #include <sstream>
 
-namespace Quasar
+namespace Quest
 {
 	class MouseMovedEvent : public Event
 	{

@@ -15,10 +15,10 @@
 
 #include <cstdint>
 
-#include "Quasar/Core/Base.h"
-#include "Quasar/Core/Logger.h"
+#include "Quest/Core/Base.h"
+#include "Quest/Core/Logger.h"
 
 // Platform specific headers
-#ifdef QS_PLATFORM_WINDOWS
+#ifdef QE_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif

@@ -1,13 +1,13 @@
 #pragma once
 
-// For use by Quasar applications
-#include "Quasar/Core/Base.h"
+// For use by Quest applications
+#include "Quest/Core/Base.h"
 
-#include "Quasar/Core/Application.h"
-#include "Quasar/Core/Logger.h"
+#include "Quest/Core/Application.h"
+#include "Quest/Core/Logger.h"
 
-#include "Quasar/Core/KeyCodes.h"
-#include "Quasar/Core/MouseCodes.h"
+#include "Quest/Core/KeyCodes.h"
+#include "Quest/Core/MouseCodes.h"
 
 // ---------- ENTRY POINT ----------
-#include "Quasar/Core/EntryPoint.h"
+#include "Quest/Core/EntryPoint.h"

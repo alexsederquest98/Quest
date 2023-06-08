@@ -1,8 +1,8 @@
-#include "qspch.h"
+#include "qepch.h"
 
-#include "Quasar/Core/Logger.h"
+#include "Quest/Core/Logger.h"
 
-namespace Quasar
+namespace Quest
 {
 	std::shared_ptr<spdlog::logger> Logger::s_CoreLogger;
 	std::shared_ptr<spdlog::logger> Logger::s_ClientLogger;

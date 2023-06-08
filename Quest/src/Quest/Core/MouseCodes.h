@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace Quasar
+namespace Quest
 {
 	using MouseCode = uint16_t;
 
