@@ -5,7 +5,6 @@
 #include "Quasar/Events/MouseEvent.h"
 #include "Quasar/Events/KeyEvent.h"
 
-
 namespace Quasar
 {
 	// GLFW error callback for use in window creation
