@@ -2,12 +2,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to the root (solution)
 IncludeDir = {}
-IncludeDir["glfw"] = "Quasar/vendor/glfw/include"
-IncludeDir["imgui"] = "Quasar/vendor/imgui/"
-IncludeDir["glm"] = "Quasar/vendor/glm"
-IncludeDir["spdlog"] = "Quasar/vendor/spdlog/include"
+IncludeDir["glfw"] = "Quest/vendor/glfw/include"
+IncludeDir["imgui"] = "Quest/vendor/imgui/"
+IncludeDir["glm"] = "Quest/vendor/glm"
+IncludeDir["spdlog"] = "Quest/vendor/spdlog/include"
 
-workspace "QuasarEngine"
+workspace "QuestEngine"
     architecture "x64"
     startproject "Sandbox"
     configurations {
@@ -15,10 +15,10 @@ workspace "QuasarEngine"
     }
 
 -- Include premake5.lua in vendor libs
-include "Quasar/vendor/glfw"
+include "Quest/vendor/glfw"
 
-project "Quasar"
-    location "Quasar"
+project "Quest"
+    location "Quest"
     kind "StaticLib"
     language "C++"
     cppdialect "C++20"
@@ -27,8 +27,8 @@ project "Quasar"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    pchheader "qspch.h"
-    pchsource "Quasar/src/qspch.cpp"
+    pchheader "qepch.h"
+    pchsource "Quest/src/qepch.cpp"
 
     files {
         "%{prj.name}/src/**.h",
@@ -54,14 +54,14 @@ project "Quasar"
 
     -- Having an issue with this define it seems
     defines {
-        "QS_ENABLE_ASSERTS"
+        "QE_ENABLE_ASSERTS"
     }
 
     filter "system:windows"
         systemversion "latest"
 
         defines {
-            "QS_PLATFORM_WINDOWS"
+            "QE_PLATFORM_WINDOWS"
         }
 
         postbuildcommands {
@@ -69,20 +69,20 @@ project "Quasar"
         }
 
     filter "configurations:Debug"
-        defines "QS_DEBUG"
+        defines "QE_DEBUG"
         buildoptions "/MDd"
         symbols "On"
         defines {
-            "QS_ENABLE_ASSERTS"
+            "QE_ENABLE_ASSERTS"
         }
 
     filter "configurations:Release"
-        defines "QS_RELEASE"
+        defines "QE_RELEASE"
         buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Distribution"
-        defines "QS_DIST"
+        defines "QE_DIST"
         buildoptions "/MD"
         optimize "On"
 
@@ -102,32 +102,32 @@ project "Sandbox"
     }
 
     includedirs {
-        "Quasar/src",
-        "Quasar/vendor/spdlog/include",
-        "Quasar/vendor/",
-        "Quasar/vendor/glfw/include",
-        "Quasar/vendor/glm"
+        "Quest/src",
+        "Quest/vendor/spdlog/include",
+        "Quest/vendor/",
+        "Quest/vendor/glfw/include",
+        "Quest/vendor/glm"
     }
 
     links {
-        "Quasar"
+        "Quest"
     }
 
     filter "system:windows"
         systemversion "latest"
 
         defines {
-            "QS_PLATFORM_WINDOWS"
+            "QE_PLATFORM_WINDOWS"
         }
 
     filter "configurations:Debug"
-        defines "QS_DEBUG"
+        defines "QE_DEBUG"
         symbols "On"
 
     filter "configurations:Release"
-        defines "QS_RELEASE"
+        defines "QE_RELEASE"
         optimize "On"
 
     filter "configurations:Distribution"
-        defines "QS_DIST"
+        defines "QE_DIST"
         optimize "On"
