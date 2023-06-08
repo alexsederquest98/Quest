@@ -23,7 +23,7 @@ namespace Quasar
 	class Window
 	{
 	public:
-		using EventCallbackFn = std::is_function<void(Event&)>;
+		using EventCallbackFn = std::function<void(Event&)>;
 		
 		Window(const WindowProperties& props);
 		~Window();
@@ -33,7 +33,7 @@ namespace Quasar
 		inline uint32_t GetWidth() { return m_Data.width; }
 		inline uint32_t GetHeight() { return m_Data.height; }
 
-		void SetEventCallback(const EventCallbackFn& callback) { m_Data.eventCallBack = callback; }
+		void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled);
 		bool IsVSync() { return m_Data.vsync; };
 	private:
@@ -50,7 +50,7 @@ namespace Quasar
 			uint32_t height;
 			bool vsync;
 
-			EventCallbackFn eventCallBack;
+			EventCallbackFn EventCallback;
 		};
 
 		WindowData m_Data;

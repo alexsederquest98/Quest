@@ -6,11 +6,11 @@
 
 namespace Quasar
 {
-#define BIND_TEST(x) std::bind(&Application::x, this, std::placeholders::_1)
+	#define BIND_EVENT_CALLBACK(x) std::bind(&Application::x, this, std::placeholders::_1)
 	Application::Application()
 	{
 		m_Window = new Window(WindowProperties());
-		m_Window->SetEventCallback(BIND_TEST(OnEvent));
+		m_Window->SetEventCallback(BIND_EVENT_CALLBACK(OnEvent));
 	}
 
 	Application::~Application()
@@ -26,8 +26,26 @@ namespace Quasar
 		}
 	}
 
+	void Application::Close()
+	{
+		m_Running = false;
+	}
+
 	void Application::OnEvent(Event& e)
 	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_CALLBACK(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_CALLBACK(Application::OnWindowResize));
+	}
 
+	bool Application::OnWindowClose(WindowCloseEvent& e)
+	{
+		m_Running = false;
+		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		return false;
 	}
 }

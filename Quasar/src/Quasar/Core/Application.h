@@ -18,7 +18,11 @@ namespace Quasar
 		void Run();
 
 		void OnEvent(Event& e);
+		void Close();
 	private:
+		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
+
 		Window* m_Window;
 		bool m_Running = true;
 	};
