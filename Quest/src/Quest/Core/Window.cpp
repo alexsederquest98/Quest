@@ -82,7 +82,7 @@ namespace Quest
 					}
 					case GLFW_REPEAT:
 					{
-						KeyPressedEvent event(key, true);
+						KeyPressedEvent event(key, 1);
 						data.EventCallback(event);
 						break;
 					}
@@ -118,7 +118,7 @@ namespace Quest
 				}
 		});
 
-		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, float xOffset, float yOffset)
 		{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -126,7 +126,7 @@ namespace Quest
 				data.EventCallback(event);
 		});
 
-		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos)
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, float xPos, float yPos)
 		{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 

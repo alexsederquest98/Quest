@@ -33,9 +33,11 @@ namespace Quest
 
 	void Application::OnEvent(Event& e)
 	{
+		QE_CORE_INFO("{0}", e);
+
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_CALLBACK(Application::OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_CALLBACK(Application::OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_CALLBACK(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_CALLBACK(OnWindowResize));
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)
