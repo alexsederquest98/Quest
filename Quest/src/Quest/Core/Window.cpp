@@ -118,7 +118,7 @@ namespace Quest
 				}
 		});
 
-		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, float xOffset, float yOffset)
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
 		{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -126,7 +126,7 @@ namespace Quest
 				data.EventCallback(event);
 		});
 
-		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, float xPos, float yPos)
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos)
 		{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
