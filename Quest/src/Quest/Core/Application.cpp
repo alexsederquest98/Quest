@@ -49,7 +49,7 @@ namespace Quest
 
 	void Application::OnEvent(Event& e)
 	{
-		QE_CORE_INFO("{0}", e);
+		//QE_CORE_INFO("{0}", e);
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_CALLBACK(OnWindowClose));
