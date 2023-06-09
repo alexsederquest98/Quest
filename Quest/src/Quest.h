@@ -4,6 +4,7 @@
 #include "Quest/Core/Base.h"
 
 #include "Quest/Core/Application.h"
+#include "Quest/Core/Layer.h"
 #include "Quest/Core/Logger.h"
 
 #include "Quest/Core/KeyCodes.h"
