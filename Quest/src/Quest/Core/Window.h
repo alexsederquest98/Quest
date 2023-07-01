@@ -3,6 +3,8 @@
 #include "Quest/Core/Base.h"
 #include "Quest/Events/Event.h"
 
+#include "Quest/Renderer/RenderingContext.h"
+
 #include <GLFW/glfw3.h>
 #include <string>
 
@@ -42,6 +44,7 @@ namespace Quest
 		
 	private:
 		GLFWwindow* m_Window;
+		Scope<RenderingContext> m_Context;
 
 		struct WindowData
 		{
