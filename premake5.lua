@@ -44,7 +44,7 @@ project "Quest"
         "%{IncludeDir.glfw}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.imgui}",
-        "$(VULKAN_SDK)/Include"
+        "$(VULKAN_SDK)/Include",
     }
 
     links {
