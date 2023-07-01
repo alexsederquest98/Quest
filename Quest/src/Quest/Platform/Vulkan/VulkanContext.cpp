@@ -13,4 +13,14 @@ namespace Quest
 	{
 		glfwMakeContextCurrent(m_Window);
 	}
+
+	void VulkanContext::Shutdown()
+	{
+
+	}
+
+	void VulkanContext::WaitForDevice()
+	{
+
+	}
 }
