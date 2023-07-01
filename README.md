@@ -1,5 +1,5 @@
 # Quest Engine
-Quest is a WIP 3D/2D game engine built in C++.
+Quest is a WIP 2D/3D game engine built in C++.
 
 _Based on [Hazel](https://github.com/TheCherno/Hazel/tree/master) by The Cherno from his game engine series on Youtube._
 ***
@@ -18,7 +18,8 @@ I will already assume you have the VulkanSDK downloaded and the `VULKAN_SDK` env
 
 ***
 ## Features
-- Nothing, WIP so far
+- Logging system for Engine and Application (client)
+- Layer system to run client code through the Engine's update loop
 
 ## Planned Features
 - 2D rendering system
