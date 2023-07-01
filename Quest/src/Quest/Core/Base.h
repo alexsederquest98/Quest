@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Quest/Core/Logger.h"
-
 #include <memory>
 
 #ifdef QE_PLATFORM_WINDOWS
@@ -10,13 +8,20 @@
 	#error Quest Engine only supports Windows
 #endif
 
-#ifdef QE_ENABLE_ASSERTS
-	#define QE_ASSERT(x, ...) { if (!(x)) { QE_ERROR("Assert Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define QE_CORE_ASSERT(x, ...) { if (!(x)) { QE_CORE_ERROR("Assert Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#ifdef QE_DEBUG
+	#if defined(QE_PLATFORM_WINDOWS)
+		#define QE_DEBUGBREAK() __debugbreak()
+	#else
+		#error "Platform doesn't support debugbreak yet"
+	#endif
+	
+	#define QE_ENABLE_ASSERTS
 #else
-	#define QE_ASSERT(x, ...)
-	#define QE_CORE_ASSERT(x, ...)
+	#define QE_DEBUGBREAK()
 #endif
+
+#define QE_EXPAND_MACRO(x) x
+#define QE_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << (x))
 
@@ -25,6 +30,7 @@
 // Adding some typedefs for stuff I may want to replace with custom implementations later on
 namespace Quest
 {
+	// Scope is a std::unique_ptr but I can change how its implemented later on as needs change
 	template<typename T>
 	using Scope = std::unique_ptr<T>;
 	template<typename T, typename ... Args>
@@ -33,6 +39,7 @@ namespace Quest
 		return std::make_unique<T>(std::forward<Args>(args)...);
 	}
 
+	// Ref is a std::shared_ptr but I can change how its implemented later on as needs change
 	template<typename T>
 	using Ref = std::shared_ptr<T>;
 	template<typename T, typename ... Args>
@@ -41,3 +48,7 @@ namespace Quest
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
 }
+
+// Down here to deal with some circular includes in Assert.h
+#include "Quest/Core/Logger.h"
+#include "Quest/Core/Assert.h"

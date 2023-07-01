@@ -52,11 +52,6 @@ project "Quest"
         "$(VULKAN_SDK)/Lib/vulkan-1.lib"
     }
 
-    -- Having an issue with this define it seems
-    defines {
-        "QE_ENABLE_ASSERTS"
-    }
-
     filter "system:windows"
         systemversion "latest"
 
@@ -72,9 +67,6 @@ project "Quest"
         defines "QE_DEBUG"
         buildoptions "/MDd"
         symbols "On"
-        defines {
-            "QE_ENABLE_ASSERTS"
-        }
 
     filter "configurations:Release"
         defines "QE_RELEASE"
@@ -121,13 +113,13 @@ project "Sandbox"
         }
 
     filter "configurations:Debug"
-        defines "QE_DEBUG"
+        defines "SB_DEBUG"
         symbols "On"
 
     filter "configurations:Release"
-        defines "QE_RELEASE"
+        defines "SB_RELEASE"
         optimize "On"
 
     filter "configurations:Distribution"
-        defines "QE_DIST"
+        defines "SB_DIST"
         optimize "On"
