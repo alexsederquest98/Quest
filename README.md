@@ -1,7 +1,6 @@
 # Quest Engine
 Quest is a WIP 2D/3D game engine built in C++.
 
-_Based on [Hazel](https://github.com/TheCherno/Hazel/tree/master) by The Cherno from his game engine series on Youtube._
 ***
 ## Getting Started
 I recommend using Visual Studio 2022 as that is being used to develop Quest. It may work on other environments but it is not officially tested or verified.
