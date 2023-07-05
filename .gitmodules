@@ -1,6 +1,7 @@
 [submodule "Quest/vendor/glfw"]
 	path = Quest/vendor/glfw
 	url = https://github.com/alexsederquest98/glfw.git
+	ignore = untracked
 [submodule "Quest/vendor/glm"]
 	path = Quest/vendor/glm
 	url = https://github.com/g-truc/glm.git
