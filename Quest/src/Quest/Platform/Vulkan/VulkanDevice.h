@@ -4,6 +4,17 @@
 
 namespace Quest
 {
+	struct QueueFamilyIndices
+	{
+		std::optional<uint32_t> Graphics;
+		std::optional<uint32_t> Present;
+
+		bool isComplete()
+		{
+			return Graphics.has_value() && Present.has_value();
+		}
+	};
+
 	class VulkanPhysicalDevice
 	{
 	public:
@@ -22,18 +33,7 @@ namespace Quest
 	class VulkanDevice
 	{
 	public:
-		struct QueueFamilyIndices
-		{
-			std::optional<uint32_t> Graphics;
-			std::optional<uint32_t> Present;
-			
-			bool isComplete()
-			{
-				return Graphics.has_value() && Present.has_value();
-			}
-		};
-	public:
-		VulkanDevice(Ref<VulkanPhysicalDevice> device, const std::vector<const char*>& requiredExtensions, const std::vector<const char*>& requiredLayers);
+		VulkanDevice(Ref<VulkanPhysicalDevice> device, VkSurfaceKHR* surface, const std::vector<const char*>& requiredExtensions, const std::vector<const char*>& requiredLayers);
 		~VulkanDevice();
 
 		VkDevice Get() { return m_LogicalDevice; }
@@ -47,6 +47,12 @@ namespace Quest
 		VkQueue m_GraphicsQueue;
 		VkQueue m_PresentQueue;
 		VmaAllocator m_Allocator;
+
+		#ifdef QE_DEBUG
+		const bool enableValidationLayers = true;
+		#else
+		const bool enableValidationLayers = false;
+		#endif
 
 		QueueFamilyIndices m_QueueFamilyIndices;
 	};

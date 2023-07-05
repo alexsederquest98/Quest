@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Quest/Renderer/RenderingContext.h"
+#include "Quest/Renderer/Renderer.h"
 
 #include "Quest/Platform/Vulkan/VulkanBase.h"
 #include "Quest/Platform/Vulkan/VulkanDevice.h"
@@ -14,6 +15,8 @@ namespace Quest
 		void Init() override;
 		void Shutdown() override;
 		void WaitForDevice() override;
+
+		//static Ref<VulkanContext> Get() { return DynamicPointerCast<VulkanContext>(Renderer::GetContext()); }
 
 		VkInstance GetInstance() { return m_Instance; }
 		VkSurfaceKHR GetSurface() { return m_Surface; }

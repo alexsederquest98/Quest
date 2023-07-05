@@ -6,6 +6,7 @@ IncludeDir["glfw"] = "Quest/vendor/glfw/include"
 IncludeDir["imgui"] = "Quest/vendor/imgui/"
 IncludeDir["glm"] = "Quest/vendor/glm"
 IncludeDir["spdlog"] = "Quest/vendor/spdlog/include"
+IncludeDir["glad"] = "Quest/vendor/glad/include"
 
 workspace "QuestEngine"
     architecture "x64"
@@ -16,6 +17,7 @@ workspace "QuestEngine"
 
 -- Include premake5.lua in vendor libs
 include "Quest/vendor/glfw"
+include "Quest/vendor/glad"
 
 project "Quest"
     location "Quest"
@@ -44,11 +46,14 @@ project "Quest"
         "%{IncludeDir.glfw}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.imgui}",
+        "%{IncludeDir.glad}",
         "$(VULKAN_SDK)/Include",
     }
 
     links {
         "glfw",
+        "glad",
+        "opengl32.lib",
         "$(VULKAN_SDK)/Lib/vulkan-1.lib"
     }
 

@@ -47,6 +47,9 @@ namespace Quest
 	{
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
+
+	//template<typename T1, typename T2>
+	//using DynamicPointerCast = std::dynamic_pointer_cast<T1>(T2);
 }
 
 // Down here to deal with some circular includes in Assert.h
