@@ -22,7 +22,7 @@ public:
 class Sandbox : public Quest::Application {
 public:
 	Sandbox() {
-		PushLayer(new SandboxLayer());
+		//PushLayer(new SandboxLayer());
 	}
 
 	~Sandbox() {

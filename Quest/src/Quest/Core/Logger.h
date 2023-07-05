@@ -27,11 +27,11 @@ namespace Quest
 #define QE_CORE_INFO(...)  ::Quest::Logger::GetCoreLogger()->info(__VA_ARGS__)
 #define QE_CORE_WARN(...)  ::Quest::Logger::GetCoreLogger()->warn(__VA_ARGS__)
 #define QE_CORE_ERROR(...) ::Quest::Logger::GetCoreLogger()->error(__VA_ARGS__)
-//#define QE_CORE_FATAL(...) ::Quest::Logger::GetCoreLogger()->fatal(__VA_ARGS__)
+#define QE_CORE_CRITICAL(...) ::Quest::Logger::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Macros for client logger for ease of use
 #define QE_TRACE(...) ::Quest::Logger::GetClientLogger()->trace(__VA_ARGS__)
 #define QE_INFO(...)  ::Quest::Logger::GetClientLogger()->info(__VA_ARGS__)
 #define QE_WARN(...)  ::Quest::Logger::GetClientLogger()->warn(__VA_ARGS__)
 #define QE_ERROR(...) ::Quest::Logger::GetClientLogger()->error(__VA_ARGS__)
-//#define QE_FATAL(...) ::Quest::Logger::GetClientLogger()->fatal(__VA_ARGS__)
+#define QE_CRITICAL(...) ::Quest::Logger::GetClientLogger()->critical(__VA_ARGS__)

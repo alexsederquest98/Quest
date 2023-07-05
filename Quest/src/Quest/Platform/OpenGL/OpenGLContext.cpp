@@ -17,10 +17,11 @@ namespace Quest
 		QE_CORE_ASSERT(status, "Failed to initialize Glad");
 
 		// Check to make sure the version of OpenGL is 4.6 capable
-		//QE_CORE_INFO("OpenGL Version Information:");
-		//QE_CORE_INFO("  Vendor: {0}", glGetString(GL_VENDOR));
-		//QE_CORE_INFO("  Renderer: {0}", glGetString(GL_RENDERER));
-		//QE_CORE_INFO("  Version: {0}", glGetString(GL_VERSION));
+		// spdlog needs to have the GLUbyte casted to a "const char*" for it to work properly now
+		QE_CORE_INFO("OpenGL Version Information:");
+		QE_CORE_INFO("  Vendor: {0}", (const char*)glGetString(GL_VENDOR));
+		QE_CORE_INFO("  Renderer: {0}", (const char*)glGetString(GL_RENDERER));
+		QE_CORE_INFO("  Version: {0}", (const char*)glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::Shutdown()
