@@ -15,6 +15,7 @@ namespace Quest
 		void Init() override;
 		void Shutdown() override;
 		void WaitForDevice() override;
+		void SwapBuffers() override;
 
 		//static Ref<VulkanContext> Get() { return DynamicPointerCast<VulkanContext>(Renderer::GetContext()); }
 

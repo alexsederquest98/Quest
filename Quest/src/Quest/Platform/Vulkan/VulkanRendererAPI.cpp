@@ -12,4 +12,14 @@ namespace Quest
 	{
 
 	}
+
+	void VulkanRendererAPI::SetClearColor(const glm::vec4& color)
+	{
+
+	}
+
+	void VulkanRendererAPI::Clear()
+	{
+
+	}
 }

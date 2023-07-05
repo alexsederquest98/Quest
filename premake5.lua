@@ -57,6 +57,10 @@ project "Quest"
         "$(VULKAN_SDK)/Lib/vulkan-1.lib"
     }
 
+    defines {
+        "GLFW_INCLUDE_NONE"
+    }
+
     filter "system:windows"
         systemversion "latest"
 

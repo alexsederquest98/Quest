@@ -39,11 +39,10 @@ namespace Quest
 		// TODO: Setup window hints for the render api here later for debug
 		m_Window = glfwCreateWindow((int)props.width, (int)props.height, m_Data.title.c_str(), nullptr, nullptr);
 
+		// Defaults to OpenGL context
 		m_Context = RenderingContext::Create(m_Window);
 		m_Context->Init();
 
-		// TODO: graphics context... learn about this
-		//glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -148,7 +147,8 @@ namespace Quest
 	void Window::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
+		//glfwSwapBuffers(m_Window);
 	}
 
 	void Window::SetVSync(bool enabled)

@@ -23,4 +23,9 @@ namespace Quest
 	{
 
 	}
+
+	void VulkanContext::SwapBuffers()
+	{
+
+	}
 }

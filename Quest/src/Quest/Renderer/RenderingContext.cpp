@@ -3,6 +3,7 @@
 
 #include "Quest/Renderer/Renderer.h"
 #include "Quest/Platform/Vulkan/VulkanContext.h"
+#include "Quest/Platform/OpenGL/OpenGLContext.h"
 
 namespace Quest
 {
@@ -13,6 +14,7 @@ namespace Quest
 		{
 		case RendererAPI::API::NONE:    QE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
 		case RendererAPI::API::VULKAN:  return CreateScope<VulkanContext>(window);
+		case RendererAPI::API::OPENGL:	return CreateScope<OpenGLContext>(window);
 		}
 
 		QE_CORE_ASSERT(false, "Invalid RendererAPI");
