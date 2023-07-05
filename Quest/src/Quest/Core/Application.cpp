@@ -4,6 +4,8 @@
 //#include "Quest/Events/ApplicationEvent.h"
 #include "Quest/Core/Logger.h"
 
+#include <glad/glad.h>
+
 namespace Quest
 {
 	#define BIND_EVENT_CALLBACK(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -22,6 +24,8 @@ namespace Quest
 	{
 		while (m_Running)
 		{
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 			// Update layers
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
