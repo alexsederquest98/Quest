@@ -34,10 +34,32 @@ namespace Quest
 		uint32_t Size;
 		uint32_t Offset;
 		ShaderDataType DataType;
+		bool Normalized;
 
-		BufferElement(ShaderDataType type, const std::string& name)
-			: Name(name), DataType(type), Size(GetShaderDataTypeSize(type)), Offset(0)
+		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
+			: Name(name), DataType(type), Size(GetShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
 		{
+		}
+
+		uint32_t GetComponentCount() const
+		{
+			switch (DataType)
+			{
+			case ShaderDataType::Float:		return 1;
+			case ShaderDataType::Vec2:		return 2;
+			case ShaderDataType::Vec3:		return 3;
+			case ShaderDataType::Vec4:		return 4;
+			case ShaderDataType::Mat3:		return 3 * 3;
+			case ShaderDataType::Mat4:		return 4 * 4;
+			case ShaderDataType::Int:		return 1;
+			case ShaderDataType::Int2:		return 2;
+			case ShaderDataType::Int3:		return 3;
+			case ShaderDataType::Int4:		return 4;
+			case ShaderDataType::Bool:		return 1;
+			}
+
+			QE_CORE_ASSERT(false, "Invalid ShaderDataType");
+			return 0;
 		}
 	};
 
@@ -51,7 +73,13 @@ namespace Quest
 			CalculateOffsetsAndStride();
 		}
 
+		uint32_t GetStride() const { return m_Stride; }
 		const std::vector<BufferElement>& GetElements() const { return m_Elements; }
+
+		std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
+		std::vector<BufferElement>::iterator end() { return m_Elements.end(); }
+		std::vector<BufferElement>::const_iterator begin() const { return m_Elements.begin(); }
+		std::vector<BufferElement>::const_iterator end() const { return m_Elements.begin(); }
 	private:
 		void CalculateOffsetsAndStride()
 		{
