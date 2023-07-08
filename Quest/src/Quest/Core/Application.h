@@ -7,9 +7,14 @@
 #include "Quest/Core/LayerStack.h"
 #include <functional>
 
+#include "Quest/Renderer/Shader.h"
+#include "Quest/Renderer/Buffer.h"
+#include "Quest/Renderer/VertexArray.h"
+
+int main(int argc, char** argv);
+
 namespace Quest
 {
-
 	class Application
 	{
 	public:
@@ -31,6 +36,16 @@ namespace Quest
 		Window* m_Window;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		// Testing
+		Ref<Shader> m_Shader;
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		//Ref<VertexArray> m_VertexArray;
+		//Ref<VertexBuffer> m_VertexBuffer;
+		//Ref<IndexBuffer> m_IndexBuffer;
+	private:
+		static Application* s_Instance;
+		friend int ::main(int argc, char** argv);
 	};
 
 	// Define in client
