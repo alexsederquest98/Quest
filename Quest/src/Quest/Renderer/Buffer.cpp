@@ -32,12 +32,12 @@ namespace Quest
 	}
 
 	// INDEX BUFFER
-	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t size)
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::NONE:	QE_CORE_ASSERT(false, "RendererAPI::NONE is not supported"); return nullptr;
-		case RendererAPI::API::OPENGL:	return CreateRef<OpenGLIndexBuffer>(indices, size);
+		case RendererAPI::API::OPENGL:	return CreateRef<OpenGLIndexBuffer>(indices, count);
 		}
 
 		return nullptr;

@@ -53,7 +53,7 @@ namespace Quest
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnUpdate()
+	void ImGuiLayer::OnImGuiRender()
 	{
 		ImGui::ShowDemoWindow();
 	}

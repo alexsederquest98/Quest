@@ -46,10 +46,10 @@ namespace Quest
 
 		// Testing
 		Ref<Shader> m_Shader;
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
-		//Ref<VertexArray> m_VertexArray;
-		//Ref<VertexBuffer> m_VertexBuffer;
-		//Ref<IndexBuffer> m_IndexBuffer;
+		//unsigned int m_VertexArray;
+		Ref<VertexArray> m_VertexArray;
+		Ref<VertexBuffer> m_VertexBuffer;
+		Ref<IndexBuffer> m_IndexBuffer;
 	private:
 		static Application* s_Instance;
 		friend int ::main(int argc, char** argv);
