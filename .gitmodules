@@ -11,3 +11,4 @@
 [submodule "Quest/vendor/imgui"]
 	path = Quest/vendor/imgui
 	url = https://github.com/alexsederquest98/imgui.git
+	branch = docking

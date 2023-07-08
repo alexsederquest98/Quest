@@ -18,6 +18,7 @@ workspace "QuestEngine"
 -- Include premake5.lua in vendor libs
 include "Quest/vendor/glfw"
 include "Quest/vendor/glad"
+include "Quest/vendor/imgui"
 
 project "Quest"
     location "Quest"
@@ -53,6 +54,7 @@ project "Quest"
     links {
         "glfw",
         "glad",
+        "ImGui",
         "opengl32.lib",
         "$(VULKAN_SDK)/Lib/vulkan-1.lib"
     }
