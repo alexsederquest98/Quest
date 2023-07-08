@@ -67,10 +67,6 @@ project "Quest"
     filter "system:windows"
         systemversion "latest"
 
-        defines {
-            "QE_PLATFORM_WINDOWS"
-        }
-
         postbuildcommands {
             ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
         }
@@ -109,6 +105,7 @@ project "Sandbox"
         "Quest/vendor/spdlog/include",
         "Quest/src",
         "Quest/vendor/",
+        "Quest/vendor/glfw/include",
         "Quest/vendor/glm"
     }
 
@@ -120,13 +117,13 @@ project "Sandbox"
         systemversion "latest"
         
     filter "configurations:Debug"
-        defines "SB_DEBUG"
+        defines "QE_DEBUG"
         symbols "On"
 
     filter "configurations:Release"
-        defines "SB_RELEASE"
+        defines "QE_RELEASE"
         optimize "On"
 
     filter "configurations:Distribution"
-        defines "SB_DIST"
+        defines "QE_DIST"
         optimize "On"

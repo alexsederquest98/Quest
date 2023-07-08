@@ -2,6 +2,13 @@
 
 #include <memory>
 
+#ifdef _WIN32
+	#ifdef _WIN64
+		#define QE_PLATFORM_WINDOWS
+	#endif
+#endif
+
+
 #ifdef QE_PLATFORM_WINDOWS
 
 #else
