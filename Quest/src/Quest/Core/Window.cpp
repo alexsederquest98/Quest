@@ -13,6 +13,11 @@ namespace Quest
 		QE_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
+	Scope<Window> Window::Create(const WindowProperties& props)
+	{
+		return CreateScope<Window>(props);
+	}
+
 	Window::Window(const WindowProperties& props)
 	{
 		Init(props);
@@ -35,6 +40,10 @@ namespace Quest
 		int success = glfwInit();
 		QE_CORE_ASSERT(success, "Failed to initialize GLFW :(");
 		glfwSetErrorCallback(GLFWErrorCallback);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
 
 		// TODO: Setup window hints for the render api here later for debug
 		m_Window = glfwCreateWindow((int)props.width, (int)props.height, m_Data.title.c_str(), nullptr, nullptr);

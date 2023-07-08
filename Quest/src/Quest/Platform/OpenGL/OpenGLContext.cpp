@@ -12,9 +12,12 @@ namespace Quest
 
 	void OpenGLContext::Init()
 	{
+		QE_CORE_ASSERT(m_WindowHandle, "Window is NULL");
 		glfwMakeContextCurrent(m_WindowHandle);
+
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		QE_CORE_ASSERT(status, "Failed to initialize Glad");
+		gladLoadGL();
 
 		// Check to make sure the version of OpenGL is 4.6 capable
 		// spdlog needs to have the GLUbyte casted to a "const char*" for it to work properly now

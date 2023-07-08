@@ -48,26 +48,90 @@ namespace Quest
 
 	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
 	{
+		QE_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout assigned");
+
 		glBindVertexArray(m_RendererID);
 		vertexBuffer->Bind();
 
+		QE_CORE_INFO("Adding Vertex Buffer to VAO");
+
 		uint32_t index = 0;
 		const auto& layout = vertexBuffer->GetLayout();
-		for (const auto& element : layout)
+		for (const auto& element : layout.GetElements())
 		{
 			glEnableVertexAttribArray(index);
 			glVertexAttribPointer(index,
-								  element.GetComponentCount(),
-								  GetShaderDataTypeToOpenGLBaseType(element.DataType),
-								  element.Normalized ? GL_TRUE : GL_FALSE,
-								  layout.GetStride(),
-								  (const void*)element.Offset
+				element.GetComponentCount(),
+				GetShaderDataTypeToOpenGLBaseType(element.DataType),
+				element.Normalized ? GL_TRUE : GL_FALSE,
+				layout.GetStride(),
+				(const void*)element.Offset
 			);
 
 			index++;
 		}
 
 		m_VertexBuffers.push_back(vertexBuffer);
+
+		/*const auto& layout = vertexBuffer->GetLayout();
+		for (const auto& element : layout)
+		{
+			switch (element.DataType)
+			{
+			case ShaderDataType::Float:
+			case ShaderDataType::Vec2:
+			case ShaderDataType::Vec3:
+			case ShaderDataType::Vec4:
+			{
+				glEnableVertexAttribArray(m_VertexBufferIndex);
+				glVertexAttribPointer(m_VertexBufferIndex,
+					element.GetComponentCount(),
+					GetShaderDataTypeToOpenGLBaseType(element.DataType),
+					element.Normalized ? GL_TRUE : GL_FALSE,
+					layout.GetStride(),
+					(const void*)element.Offset);
+				m_VertexBufferIndex++;
+				break;
+			}
+			case ShaderDataType::Int:
+			case ShaderDataType::Int2:
+			case ShaderDataType::Int3:
+			case ShaderDataType::Int4:
+			case ShaderDataType::Bool:
+			{
+				glEnableVertexAttribArray(m_VertexBufferIndex);
+				glVertexAttribIPointer(m_VertexBufferIndex,
+					element.GetComponentCount(),
+					GetShaderDataTypeToOpenGLBaseType(element.DataType),
+					layout.GetStride(),
+					(const void*)element.Offset);
+				m_VertexBufferIndex++;
+				break;
+			}
+			case ShaderDataType::Mat3:
+			case ShaderDataType::Mat4:
+			{
+				uint8_t count = element.GetComponentCount();
+				for (uint8_t i = 0; i < count; i++)
+				{
+					glEnableVertexAttribArray(m_VertexBufferIndex);
+					glVertexAttribPointer(m_VertexBufferIndex,
+						count,
+						GetShaderDataTypeToOpenGLBaseType(element.DataType),
+						element.Normalized ? GL_TRUE : GL_FALSE,
+						layout.GetStride(),
+						(const void*)(element.Offset + sizeof(float) * count * i));
+					glVertexAttribDivisor(m_VertexBufferIndex, 1);
+					m_VertexBufferIndex++;
+				}
+				break;
+			}
+			default:
+				QE_CORE_ASSERT(false, "Invalid ShaderDataType");
+			}
+		}
+
+		m_VertexBuffers.push_back(vertexBuffer);*/
 	}
 
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)

@@ -26,7 +26,7 @@ namespace Quest
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
-		
+
 		Window(const WindowProperties& props);
 		~Window();
 		
@@ -40,6 +40,7 @@ namespace Quest
 		bool IsVSync() { return m_Data.vsync; };
 
 		GLFWwindow* GetWindow() { return m_Window; }
+		static Scope<Window> Create(const WindowProperties& props = WindowProperties());
 	private:
 		void Init(const WindowProperties& props);
 		void Shutdown();

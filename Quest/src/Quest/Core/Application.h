@@ -39,14 +39,27 @@ namespace Quest
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
-		Window* m_Window;
+		void SetupRawGLTriangle();
+		void SetupRawGL_CreateTriangle();
+		void DrawRawGLTriangle();
+
+		void SetupIntermedTriangle();
+		void DrawIntermedTriangle();
+
+		void SetupAPITriangle();
+		void DrawAPITriangle();
+
+		Scope<Window> m_Window;
 		bool m_Running = true;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 
 		// Testing
 		Ref<Shader> m_Shader;
-		//unsigned int m_VertexArray;
+		unsigned int triangle;
+		unsigned int m_VA;
+		unsigned int m_VB;
+		unsigned int m_IB;
 		Ref<VertexArray> m_VertexArray;
 		Ref<VertexBuffer> m_VertexBuffer;
 		Ref<IndexBuffer> m_IndexBuffer;
