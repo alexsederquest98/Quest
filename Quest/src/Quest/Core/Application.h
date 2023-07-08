@@ -39,14 +39,8 @@ namespace Quest
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
-		void SetupRawGL_CreateTriangle();
-		void DrawRawGLTriangle();
-
 		void SetupAPITriangle();
-		void DrawAPITriangle();
-
 		void SetupAPIRect();
-		void DrawAPIRect();
 
 		Scope<Window> m_Window;
 		bool m_Running = true;
@@ -56,9 +50,6 @@ namespace Quest
 		// Testing
 		Ref<Shader> m_Shader;
 		unsigned int renderShape;
-		unsigned int m_VA;
-		unsigned int m_VB;
-		unsigned int m_IB;
 		Ref<VertexArray> m_VertexArray;
 		Ref<VertexBuffer> m_VertexBuffer;
 		Ref<IndexBuffer> m_IndexBuffer;
