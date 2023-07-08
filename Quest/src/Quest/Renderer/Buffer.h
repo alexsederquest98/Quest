@@ -36,11 +36,14 @@ namespace Quest
 		ShaderDataType DataType;
 		bool Normalized;
 
+		BufferElement() = default;
 		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
 			: Name(name), DataType(type), Size(GetShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
 		{
 		}
 
+		// Gets the component count of the data types
+		// such as float being 1 component and vec2 being 2 components, etc.
 		uint32_t GetComponentCount() const
 		{
 			switch (DataType)
