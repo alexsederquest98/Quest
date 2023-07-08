@@ -19,6 +19,9 @@ namespace Quest
 		m_Window = new Window(WindowProperties());
 		m_Window->SetEventCallback(BIND_EVENT_CALLBACK(OnEvent));
 
+		m_ImGuiLayer = new ImGuiLayer();
+		m_ImGuiLayer->OnAttach();
+		//PushOverlay(m_ImGuiLayer);
 
 		// Triangle Testing Code
 		glGenVertexArrays(1, &m_VertexArray);
@@ -96,6 +99,7 @@ namespace Quest
 
 	Application::~Application()
 	{
+		m_ImGuiLayer->OnDetach();
 		delete m_Window;
 	}
 
@@ -116,6 +120,11 @@ namespace Quest
 			// Update layers
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			// Update ImGui layer
+			m_ImGuiLayer->BeginFrame();
+			m_ImGuiLayer->OnUpdate();
+			m_ImGuiLayer->EndFrame();
 
 			m_Window->OnUpdate();
 		}

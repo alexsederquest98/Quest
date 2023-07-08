@@ -38,6 +38,8 @@ namespace Quest
 		void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled);
 		bool IsVSync() { return m_Data.vsync; };
+
+		GLFWwindow* GetWindow() { return m_Window; }
 	private:
 		void Init(const WindowProperties& props);
 		void Shutdown();

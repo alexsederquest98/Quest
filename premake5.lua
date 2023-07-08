@@ -60,7 +60,8 @@ project "Quest"
     }
 
     defines {
-        "GLFW_INCLUDE_NONE"
+        "GLFW_INCLUDE_NONE",
+        "_CRT_SECURE_NO_WARNINGS"
     }
 
     filter "system:windows"
