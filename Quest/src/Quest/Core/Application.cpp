@@ -15,7 +15,7 @@ namespace Quest
 	Application::Application()
 	{
 		// TRIANGLE TEST
-		triangle = 3;
+		renderShape = 1;
 
 		s_Instance = this;
 
@@ -26,76 +26,11 @@ namespace Quest
 		PushOverlay(m_ImGuiLayer);
 
 		// Setup Triangle Test
-		switch (triangle)
+		switch (renderShape)
 		{
-		case 0: SetupRawGLTriangle(); break;
-		case 1: SetupRawGL_CreateTriangle(); break;
-		case 2: SetupIntermedTriangle(); break;
-		case 3: SetupAPITriangle(); break;
+		case 0: SetupAPITriangle(); break;
+		case 1: SetupAPIRect(); break;
 		}
-	}
-
-	void Application::SetupRawGLTriangle()
-	{
-		// Setup vertex array
-		glGenVertexArrays(1, &m_VA);
-		glBindVertexArray(m_VA);
-
-		// Setup vertex buffer
-		glGenBuffers(1, &m_VB);
-		glBindBuffer(GL_ARRAY_BUFFER, m_VB);
-
-		float vertices[3 * 3] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.0f,  0.5f, 0.0f
-		};
-
-		// Load vertex data to gpu
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-		// Index buffer
-		glGenBuffers(1, &m_IB);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IB);
-
-		unsigned int indices[3] = { 0, 1, 2 };
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-
-		std::string vsrc = R"(
-			#version 460 core
-			layout (location = 0) in vec3 a_Position;
-			layout (location = 1) in vec4 a_Color;
-			
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = vec4(a_Position, 1.0);
-			}
-		)";
-
-
-		std::string fSrc = R"(
-			#version 460 core
-			layout(location = 0) out vec4 color;
-			
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main()
-			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				//color = v_Color;
-			}
-		)";
-
-		m_Shader = Shader::Create("Triangle", vsrc, fSrc);
 	}
 
 	void Application::SetupRawGL_CreateTriangle()
@@ -126,67 +61,6 @@ namespace Quest
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-
-		std::string vsrc = R"(
-			#version 460 core
-			layout (location = 0) in vec3 a_Position;
-			layout (location = 1) in vec4 a_Color;
-			
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = vec4(a_Position, 1.0);
-			}
-		)";
-
-
-		std::string fSrc = R"(
-			#version 460 core
-			layout(location = 0) out vec4 color;
-			
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main()
-			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				//color = v_Color;
-			}
-		)";
-
-		m_Shader = Shader::Create("Triangle", vsrc, fSrc);
-	}
-
-	void Application::SetupIntermedTriangle()
-	{
-		float vertices[3 * 3] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.0f,  0.5f, 0.0f
-		};
-
-		// Setup vertex array
-		glGenVertexArrays(1, &m_VA);
-		glBindVertexArray(m_VA);
-
-		// Setup vertex buffer
-		m_VertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));
-
-		// Index buffer
-		//glGenBuffers(1, &m_IB);
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IB);
-		unsigned int indices[3] = { 0, 1, 2 };
-		m_IndexBuffer = IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
-
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-
-		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 		std::string vsrc = R"(
 			#version 460 core
@@ -283,6 +157,62 @@ namespace Quest
 		m_Shader = Shader::Create("Triangle", vsrc, fSrc);
 	}
 
+	void Application::SetupAPIRect()
+	{
+		m_VertexArray = VertexArray::Create();
+
+		float vertices[3 * 4] = {
+			-0.5f, -0.5f, 0.0f,
+			 0.5f, -0.5f, 0.0f,
+			 0.5f,  0.5f, 0.0f,
+			-0.5f,  0.5f, 0.0f
+
+		};
+
+		unsigned int indices[6] = { 0, 1, 2, 2, 3, 0 };
+
+		m_VertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));
+		BufferLayout layout = {
+			{ ShaderDataType::Vec3, "a_Position" }
+		};
+		m_VertexBuffer->SetLayout(layout);
+
+		// Setup the index buffer
+		m_IndexBuffer = IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
+
+		// Populate vertex array
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
+
+		std::string vsrc = R"(
+			#version 460 core
+			layout (location = 0) in vec3 a_Position;
+			
+			out vec3 v_Position;
+
+			void main()
+			{
+				v_Position = a_Position;
+				gl_Position = vec4(a_Position, 1.0);
+			}
+		)";
+
+
+		std::string fSrc = R"(
+			#version 460 core
+			layout(location = 0) out vec4 color;
+			
+			in vec3 v_Position;
+
+			void main()
+			{
+				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+			}
+		)";
+
+		m_Shader = Shader::Create("Rect", vsrc, fSrc);
+	}
+
 	void Application::DrawRawGLTriangle()
 	{
 		m_Shader->Bind();
@@ -291,15 +221,15 @@ namespace Quest
 		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 	}
 
-	void Application::DrawIntermedTriangle()
+	void Application::DrawAPITriangle()
 	{
 		m_Shader->Bind();
-		glBindVertexArray(m_VA);
+		m_VertexArray->Bind();
 
-		glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+		glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, 0);
 	}
 
-	void Application::DrawAPITriangle()
+	void Application::DrawAPIRect()
 	{
 		m_Shader->Bind();
 		m_VertexArray->Bind();
@@ -316,20 +246,15 @@ namespace Quest
 	{
 		while (m_Running)
 		{
-			//glClearColor(0.05f, 0.05f, 0.05f, 1);
-			glClearColor(0.91, 0.06, 0.87, 1.0f);
+			glClearColor(0.05f, 0.05f, 0.05f, 1);
+			//glClearColor(0.91, 0.06, 0.87, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			switch (triangle)
+			switch (renderShape)
 			{
-			case 0: DrawRawGLTriangle(); break;
-			case 1: DrawRawGLTriangle(); break;
-			case 2:	DrawIntermedTriangle(); break;
-			case 3: DrawAPITriangle(); break;
+			case 0: DrawAPITriangle(); break;
+			case 1: DrawAPIRect(); break;
 			}
-			//DrawRawGLTriangle();
-			//DrawIntermedTriangle();
-			//DrawAPITriangle();
 
 			// Update layers
 			for (Layer* layer : m_LayerStack)
