@@ -106,10 +106,9 @@ project "Sandbox"
     }
 
     includedirs {
-        "Quest/src",
         "Quest/vendor/spdlog/include",
+        "Quest/src",
         "Quest/vendor/",
-        "Quest/vendor/glfw/include",
         "Quest/vendor/glm"
     }
 
@@ -119,11 +118,7 @@ project "Sandbox"
 
     filter "system:windows"
         systemversion "latest"
-
-        defines {
-            "QE_PLATFORM_WINDOWS"
-        }
-
+        
     filter "configurations:Debug"
         defines "SB_DEBUG"
         symbols "On"
