@@ -11,6 +11,7 @@
 #include "Quest/Renderer/Shader.h"
 #include "Quest/Renderer/Buffer.h"
 #include "Quest/Renderer/VertexArray.h"
+#include "Quest/Renderer/OrthographicCamera.h"
 
 int main(int argc, char** argv);
 
@@ -39,20 +40,10 @@ namespace Quest
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
-		void SetupAPITriangle();
-		void SetupAPIRect();
-
 		Scope<Window> m_Window;
 		bool m_Running = true;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
-
-		// Testing
-		Ref<Shader> m_Shader;
-		unsigned int renderShape;
-		Ref<VertexArray> m_VertexArray;
-		Ref<VertexBuffer> m_VertexBuffer;
-		Ref<IndexBuffer> m_IndexBuffer;
 	private:
 		static Application* s_Instance;
 		friend int ::main(int argc, char** argv);

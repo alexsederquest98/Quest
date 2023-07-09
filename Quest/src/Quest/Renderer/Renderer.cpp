@@ -3,6 +3,8 @@
 
 namespace Quest
 {
+	Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
+
 	void Renderer::Init()
 	{
 	}
@@ -11,8 +13,9 @@ namespace Quest
 	{
 	}
 
-	void Renderer::BeginScene()
+	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
+		s_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
@@ -22,6 +25,7 @@ namespace Quest
 	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray)
 	{
 		shader->Bind();
+		shader->SetMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
 
 		vertexArray->Bind();
 		RenderCommand::DrawElements(vertexArray);

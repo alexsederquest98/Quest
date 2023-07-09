@@ -1,5 +1,7 @@
 #include "qepch.h"
 
+#include "Quest/Core/Input.h"
+
 #include "Quest/Core/Window.h"
 #include "Quest/Events/ApplicationEvent.h"
 #include "Quest/Events/MouseEvent.h"
@@ -157,7 +159,6 @@ namespace Quest
 	{
 		glfwPollEvents();
 		m_Context->SwapBuffers();
-		//glfwSwapBuffers(m_Window);
 	}
 
 	void Window::SetVSync(bool enabled)

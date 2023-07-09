@@ -4,6 +4,7 @@
 #include "Quest/Renderer/RendererAPI.h"
 #include "Quest/Renderer/RenderCommand.h"
 #include "Quest/Renderer/Shader.h"
+#include "Quest/Renderer/OrthographicCamera.h"
 
 namespace Quest
 {
@@ -13,7 +14,7 @@ namespace Quest
 		static void Init();
 		static void Shutdown();
 
-		static void BeginScene(); // update with params
+		static void BeginScene(OrthographicCamera& camera); // update with params
 		static void EndScene();
 
 		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray);
@@ -22,5 +23,11 @@ namespace Quest
 
 		static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	private:
+		struct SceneData
+		{
+			glm::mat4 ViewProjectionMatrix;
+		};
+
+		static Scope<SceneData> s_SceneData;
 	};
 }
