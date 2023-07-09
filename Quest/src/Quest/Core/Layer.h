@@ -2,6 +2,7 @@
 
 #include "Quest/Core/Base.h"
 #include "Quest/Events/Event.h"
+#include "Quest/Core/Timestep.h"
 
 namespace Quest
 {
@@ -13,7 +14,7 @@ namespace Quest
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep timestep) {}
 		virtual void OnEvent(Event& event) {}
 		virtual void OnImGuiRender() {}
 

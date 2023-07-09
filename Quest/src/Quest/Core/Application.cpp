@@ -32,9 +32,14 @@ namespace Quest
 	{
 		while (m_Running)
 		{
+			// Frame time stuff
+			float time = (float)glfwGetTime();
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
 			// Update layers
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			// Update ImGui layer
 			m_ImGuiLayer->BeginFrame();

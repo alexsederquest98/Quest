@@ -6,6 +6,7 @@
 #include "Quest/Core/Window.h"
 #include "Quest/ImGui/ImGuiLayer.h"
 #include "Quest/Core/LayerStack.h"
+#include "Quest/Core/Timestep.h"
 #include <functional>
 
 #include "Quest/Renderer/Shader.h"
@@ -44,6 +45,7 @@ namespace Quest
 		bool m_Running = true;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 		friend int ::main(int argc, char** argv);

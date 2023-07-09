@@ -69,20 +69,22 @@ public:
 		m_Shader = Quest::Shader::Create("Triangle", vsrc, fSrc);
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Quest::Timestep timestep) override
 	{
+		//QE_TRACE("Delta time: {0}", timestep.GetMiliseconds());
+
 		if (Quest::Input::IsKeyPressed(Quest::Key::Left))
-			m_CameraPosition.x -= m_CameraSpeed;
+			m_CameraPosition.x -= m_CameraSpeed * timestep;
 		else if (Quest::Input::IsKeyPressed(Quest::Key::Right))
-			m_CameraPosition.x += m_CameraSpeed;
+			m_CameraPosition.x += m_CameraSpeed * timestep;
 		if (Quest::Input::IsKeyPressed(Quest::Key::Up))
-			m_CameraPosition.y += m_CameraSpeed;
+			m_CameraPosition.y += m_CameraSpeed * timestep;
 		else if (Quest::Input::IsKeyPressed(Quest::Key::Down))
-			m_CameraPosition.y -= m_CameraSpeed;
+			m_CameraPosition.y -= m_CameraSpeed * timestep;
 		if (Quest::Input::IsKeyPressed(Quest::Key::A))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * timestep;
 		if (Quest::Input::IsKeyPressed(Quest::Key::D))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * timestep;
 
 
 		Quest::RenderCommand::SetClearColor({ 0.05f, 0.05f, 0.05f, 1.0f });
@@ -112,9 +114,9 @@ private:
 	Quest::Ref<Quest::IndexBuffer> m_IndexBuffer;
 	Quest::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 0.05f;
+	float m_CameraSpeed = 1.0f;
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 2.0f;
+	float m_CameraRotationSpeed = 10.0f;
 };
 
 class Sandbox : public Quest::Application {
