@@ -17,6 +17,7 @@ I will already assume you have the VulkanSDK downloaded and the `VULKAN_SDK` env
 
 ***
 ## Features
+- ImGui system integration that comes already setup
 - Logging system for Engine and Application (client)
 - Layer system to run client code through the Engine's update loop
 

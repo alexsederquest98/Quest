@@ -71,7 +71,15 @@ public:
 
 	void OnUpdate() override
 	{
-		//QE_TRACE("{0}", counter);
+		if (Quest::Input::IsKeyPressed(Quest::Key::Left))
+			m_CameraPosition.x -= m_CameraSpeed;
+		if (Quest::Input::IsKeyPressed(Quest::Key::Right))
+			m_CameraPosition.x += m_CameraSpeed;
+		if (Quest::Input::IsKeyPressed(Quest::Key::Down))
+			m_CameraPosition.y -= m_CameraSpeed;
+		if (Quest::Input::IsKeyPressed(Quest::Key::Up))
+			m_CameraPosition.y += m_CameraSpeed;
+
 		Quest::RenderCommand::SetClearColor({ 0.05f, 0.05f, 0.05f, 1.0f });
 		Quest::RenderCommand::Clear();
 
@@ -87,22 +95,6 @@ public:
 
 	void OnEvent(Quest::Event& event) override
 	{
-		Quest::EventDispatcher dispatcher(event);
-		dispatcher.Dispatch<Quest::KeyPressedEvent>(QE_BIND_EVENT_FN(SandboxLayer::OnKeyPressedEvent));
-	}
-
-	bool OnKeyPressedEvent(Quest::KeyPressedEvent& event)
-	{
-		if (Quest::Input::IsKeyPressed(Quest::Key::Left))
-			m_CameraPosition.x -= m_CameraSpeed;
-		if (Quest::Input::IsKeyPressed(Quest::Key::Right))
-			m_CameraPosition.x += m_CameraSpeed;
-		if (Quest::Input::IsKeyPressed(Quest::Key::Down))
-			m_CameraPosition.y -= m_CameraSpeed;
-		if (Quest::Input::IsKeyPressed(Quest::Key::Up))
-			m_CameraPosition.y += m_CameraSpeed;
-
-		return false;
 	}
 
 	virtual void OnImGuiRender() override
