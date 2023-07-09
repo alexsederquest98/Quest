@@ -53,11 +53,6 @@ namespace Quest
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnImGuiRender()
-	{
-		ImGui::ShowDemoWindow();
-	}
-
 	void ImGuiLayer::BeginFrame()
 	{
 		ImGui_ImplOpenGL3_NewFrame();

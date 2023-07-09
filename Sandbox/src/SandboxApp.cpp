@@ -102,12 +102,6 @@ public:
 		if (Quest::Input::IsKeyPressed(Quest::Key::Up))
 			m_CameraPosition.y += m_CameraSpeed;
 
-		if (event.GetEventType() == Quest::EventType::KeyPressed)
-		{
-			Quest::KeyPressedEvent& e = (Quest::KeyPressedEvent&)event;
-			QE_TRACE("{0}", (char)e.GetKeyCode());
-		}
-
 		return false;
 	}
 
