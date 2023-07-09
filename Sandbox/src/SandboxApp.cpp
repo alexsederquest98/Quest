@@ -6,7 +6,7 @@ class SandboxLayer : public Quest::Layer
 {
 public:
 	SandboxLayer()
-		: Layer("Test Layer"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		: Layer("Test Layer"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f), m_TrianglePos(0.0f)
 	{
 		float vertices[3 * 3] = {
 			-0.5f, -0.5f, 0.0f,
@@ -38,7 +38,8 @@ public:
 			layout (location = 0) in vec3 a_Position;
 			//layout (location = 1) in vec4 a_Color;
 
-			uniform mat4 u_ViewProjection;			
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;			
 
 			out vec3 v_Position;
 			//out vec4 v_Color;
@@ -47,7 +48,7 @@ public:
 			{
 				v_Position = a_Position;
 				//v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -81,11 +82,11 @@ public:
 			m_CameraPosition.y += m_CameraSpeed * timestep;
 		else if (Quest::Input::IsKeyPressed(Quest::Key::Down))
 			m_CameraPosition.y -= m_CameraSpeed * timestep;
+
 		if (Quest::Input::IsKeyPressed(Quest::Key::A))
 			m_CameraRotation += m_CameraRotationSpeed * timestep;
 		if (Quest::Input::IsKeyPressed(Quest::Key::D))
 			m_CameraRotation -= m_CameraRotationSpeed * timestep;
-
 
 		Quest::RenderCommand::SetClearColor({ 0.05f, 0.05f, 0.05f, 1.0f });
 		Quest::RenderCommand::Clear();
@@ -95,7 +96,9 @@ public:
 
 		Quest::Renderer::BeginScene(m_Camera);
 
-		Quest::Renderer::Submit(m_Shader, m_VertexArray);
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_TrianglePos);
+
+		Quest::Renderer::Submit(m_Shader, m_VertexArray, transform);
 
 		Quest::Renderer::EndScene();
 	}
@@ -117,6 +120,7 @@ private:
 	float m_CameraSpeed = 1.0f;
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 10.0f;
+	glm::vec3 m_TrianglePos;
 };
 
 class Sandbox : public Quest::Application {

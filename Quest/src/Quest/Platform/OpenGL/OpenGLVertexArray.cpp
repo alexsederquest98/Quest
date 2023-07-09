@@ -53,28 +53,8 @@ namespace Quest
 		glBindVertexArray(m_RendererID);
 		vertexBuffer->Bind();
 
-		QE_CORE_INFO("Adding Vertex Buffer to VAO");
-
-		uint32_t index = 0;
 		const auto& layout = vertexBuffer->GetLayout();
 		for (const auto& element : layout.GetElements())
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index,
-				element.GetComponentCount(),
-				GetShaderDataTypeToOpenGLBaseType(element.DataType),
-				element.Normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(),
-				(const void*)element.Offset
-			);
-
-			index++;
-		}
-
-		m_VertexBuffers.push_back(vertexBuffer);
-
-		/*const auto& layout = vertexBuffer->GetLayout();
-		for (const auto& element : layout)
 		{
 			switch (element.DataType)
 			{
@@ -131,7 +111,7 @@ namespace Quest
 			}
 		}
 
-		m_VertexBuffers.push_back(vertexBuffer);*/
+		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
