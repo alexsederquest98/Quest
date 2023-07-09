@@ -73,18 +73,23 @@ public:
 	{
 		if (Quest::Input::IsKeyPressed(Quest::Key::Left))
 			m_CameraPosition.x -= m_CameraSpeed;
-		if (Quest::Input::IsKeyPressed(Quest::Key::Right))
+		else if (Quest::Input::IsKeyPressed(Quest::Key::Right))
 			m_CameraPosition.x += m_CameraSpeed;
-		if (Quest::Input::IsKeyPressed(Quest::Key::Down))
-			m_CameraPosition.y -= m_CameraSpeed;
 		if (Quest::Input::IsKeyPressed(Quest::Key::Up))
 			m_CameraPosition.y += m_CameraSpeed;
+		else if (Quest::Input::IsKeyPressed(Quest::Key::Down))
+			m_CameraPosition.y -= m_CameraSpeed;
+		if (Quest::Input::IsKeyPressed(Quest::Key::A))
+			m_CameraRotation += m_CameraRotationSpeed;
+		if (Quest::Input::IsKeyPressed(Quest::Key::D))
+			m_CameraRotation -= m_CameraRotationSpeed;
+
 
 		Quest::RenderCommand::SetClearColor({ 0.05f, 0.05f, 0.05f, 1.0f });
 		Quest::RenderCommand::Clear();
 
 		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(0);
+		m_Camera.SetRotation(m_CameraRotation);
 
 		Quest::Renderer::BeginScene(m_Camera);
 
@@ -107,7 +112,9 @@ private:
 	Quest::Ref<Quest::IndexBuffer> m_IndexBuffer;
 	Quest::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 0.1f;
+	float m_CameraSpeed = 0.05f;
+	float m_CameraRotation = 0.0f;
+	float m_CameraRotationSpeed = 2.0f;
 };
 
 class Sandbox : public Quest::Application {
