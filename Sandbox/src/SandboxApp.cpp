@@ -100,7 +100,8 @@ public:
 		)";
 
 		m_Shader = Quest::Shader::Create("Square", vsrc, fSrc);
-		m_TextureShader = Quest::Shader::Create("Texture", textureShaderVSrc, textureShaderFSrc);
+		m_TextureShader = Quest::Shader::Create("Square", textureShaderVSrc, textureShaderFSrc);
+		//m_TextureShader = Quest::Shader::Create("assets/shaders/Texture.glsl");
 
 		m_Texture = Quest::Texture2D::Create("assets/textures/Checkerboard.png");
 

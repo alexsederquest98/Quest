@@ -11,6 +11,8 @@ namespace Quest
 	class OpenGLShader : public Shader
 	{
 	public:
+		OpenGLShader(const std::string& filepath);
+		OpenGLShader(const std::string& vertexFilepath, const std::string& fragmentFilepath);
 		OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource);
 		virtual ~OpenGLShader();
 
@@ -24,7 +26,10 @@ namespace Quest
 		virtual void SetMat4(const std::string& name, const glm::mat4& value) override;
 		virtual const uint32_t GetID() const override;
 	private:
-		void CreateProgram();
+		std::string ReadFile(const std::string& filepath);
+		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
+
+		void Compile(std::unordered_map<GLenum, std::string> shaderSources);
 
 	private:
 		uint32_t m_RendererID;
