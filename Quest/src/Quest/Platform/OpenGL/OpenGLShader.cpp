@@ -31,13 +31,26 @@ namespace Quest
 		Compile(shaderSources);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexFilepath, const std::string& fragmentFilepath)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexFilepath, const std::string& fragmentFilepath, const bool shaderInline)
 		: m_Name(name)
 	{
-		m_Sources[GL_VERTEX_SHADER] = vertexFilepath;
-		m_Sources[GL_FRAGMENT_SHADER] = fragmentFilepath;
+		std::unordered_map<GLenum, std::string> shaderSources;
+		// Determines whether the passed in vertexFilepath and fragmentFilepath are
+		// actual filepathes or std::string containing shader code directly
+		if (shaderInline)
+		{
+			shaderSources[GL_VERTEX_SHADER] = vertexFilepath;
+			shaderSources[GL_FRAGMENT_SHADER] = fragmentFilepath;
+		}
+		else
+		{
+			auto vertexSource = ReadFile(vertexFilepath);
+			auto fragmentSource = ReadFile(fragmentFilepath);
+			shaderSources[GL_VERTEX_SHADER] = vertexSource;
+			shaderSources[GL_FRAGMENT_SHADER] = fragmentSource;
+		}
 
-		Compile(m_Sources);
+		Compile(shaderSources);
 	}
 
 	OpenGLShader::~OpenGLShader()

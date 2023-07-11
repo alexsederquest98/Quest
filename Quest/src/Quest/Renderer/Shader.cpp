@@ -19,12 +19,12 @@ namespace Quest
 		return nullptr;
 	}
 
-	Ref<Shader> Shader::Create(const std::string& name, const std::string& vertexFilepath, const std::string& fragmentFilepath)
+	Ref<Shader> Shader::Create(const std::string& name, const std::string& vertexFilepath, const std::string& fragmentFilepath, const bool shaderInline)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::NONE:	QE_CORE_ASSERT(false, "RenderAPI::NONE is not supported"); return nullptr;
-		case RendererAPI::API::OPENGL:	return CreateRef<OpenGLShader>(name, "vertexFilePath", "fragmentFilePath");
+		case RendererAPI::API::OPENGL:	return CreateRef<OpenGLShader>(name, vertexFilepath, fragmentFilepath, shaderInline);
 		}
 
 		return nullptr;

@@ -12,7 +12,7 @@ namespace Quest
 	{
 	public:
 		OpenGLShader(const std::string& filepath);
-		OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource);
+		OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource, const bool shaderInline);
 		virtual ~OpenGLShader();
 
 		virtual void Bind() const override;
@@ -37,7 +37,7 @@ namespace Quest
 		std::string m_FilePath;
 		std::string m_Name;
 
-		std::unordered_map<GLenum, std::string> m_Sources;
+		//std::unordered_map<GLenum, std::string> m_Sources;
 		
 	};
 }

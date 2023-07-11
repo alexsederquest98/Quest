@@ -37,6 +37,7 @@ public:
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
 		m_TextureShader = Quest::Shader::Create("assets/shaders/Texture.glsl");
+		//m_TextureShader = Quest::Shader::Create("Texture", "assets/shaders/Texture.vert", "assets/shaders/Texture.frag");
 
 		m_Texture = Quest::Texture2D::Create("assets/textures/Checkerboard.png");
 
@@ -99,9 +100,6 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-		ImGui::Begin("Color Settings");
-		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
-		ImGui::End();
 	}
 private:
 	Quest::Ref<Quest::Shader> m_Shader;

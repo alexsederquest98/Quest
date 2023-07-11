@@ -7,6 +7,15 @@
 
 namespace Quest
 {
+	// This is for the 2nd overload of Create
+	// if you pass in QE_SHADER_INLINE_TRUE then it will assume
+	// that you are passing the shadder in as an std::string to vertexFilepath and fragmentFilepath
+	// if you pass in QE_SHADER_INLINE_FALSE, it will assume they are set to the actual file paths of 2 separate
+	// shaders
+	// NOTE: QE_SHADER_INLINE_FALSE is the default
+	#define QE_SHADER_INLINE_TRUE true
+	#define QE_SHADER_INLINE_FALSE false
+	
 	class Shader
 	{
 	public:
@@ -25,7 +34,8 @@ namespace Quest
 		virtual const std::string& GetName() const = 0;
 
 		static Ref<Shader> Create(const std::string& filepath);
-		static Ref<Shader> Create(const std::string& name, const std::string& vertexFilepath, const std::string& fragmentFilepath);
+		static Ref<Shader> Create(const std::string& name, const std::string& vertexFilepath, 
+			const std::string& fragmentFilepath, const bool shaderInline = QE_SHADER_INLINE_FALSE);
 	};
 
 	class ShaderLibrary
