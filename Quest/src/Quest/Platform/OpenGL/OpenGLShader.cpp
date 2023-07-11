@@ -155,9 +155,6 @@ namespace Quest
 			return;
 		}
 
-		for (auto id : glShaderIDs)
-			glDetachShader(program, id);
-
 		m_RendererID = program;
 	}
 
