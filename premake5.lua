@@ -7,6 +7,7 @@ IncludeDir["imgui"] = "Quest/vendor/imgui/"
 IncludeDir["glm"] = "Quest/vendor/glm"
 IncludeDir["spdlog"] = "Quest/vendor/spdlog/include"
 IncludeDir["glad"] = "Quest/vendor/glad/include"
+IncludeDir["stb_image"] = "Quest/vendor/stb_image"
 
 workspace "QuestEngine"
     architecture "x64"
@@ -37,6 +38,9 @@ project "Quest"
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
 
+        "%{prj.name}/vendor/stb_image/**.h",
+        "%{prj.name}/vendor/stb_image/**.cpp",
+
         "vendor/glm/glm/**.hpp",
         "vendor/glm/glm/**.inl"
     }
@@ -48,6 +52,7 @@ project "Quest"
         "%{IncludeDir.glm}",
         "%{IncludeDir.imgui}",
         "%{IncludeDir.glad}",
+        "%{IncludeDir.stb_image}",
         "$(VULKAN_SDK)/Include",
     }
 

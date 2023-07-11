@@ -19,6 +19,8 @@ namespace Quest
 		m_Window = Window::Create();
 		m_Window->SetEventCallback(BIND_EVENT_CALLBACK(OnEvent));
 
+		Renderer::Init();
+
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 	}

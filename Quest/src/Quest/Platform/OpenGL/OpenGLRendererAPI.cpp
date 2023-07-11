@@ -21,18 +21,21 @@ namespace Quest
 	void OpenGLRendererAPI::Init()
 	{
 	#ifdef QE_DEBUG
-		glEnable(GLAD_GL_KHR_debug);
+		//glEnable(GLAD_GL_KHR_debug);
 		glEnable(GL_DEBUG_OUTPUT);
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 		glDebugMessageCallback(OpenGLMessageCallback, nullptr);
-		// GL_DEBUG_SEVERITY_NOTIFICATION
-		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+		// GL_DEBUG_SEVERITY_NOTIFICATION (3rd param)
+		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_TRUE);
 	#endif
 
+		QE_CORE_WARN("hi in api init");
 		// Enable global state features of OpenGL
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GL_ALWAYS);
 		glEnable(GL_LINE_SMOOTH);
 	}
 

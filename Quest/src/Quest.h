@@ -18,6 +18,7 @@
 #include "Quest/Renderer/Buffer.h"
 #include "Quest/Renderer/VertexArray.h"
 #include "Quest/Renderer/Shader.h"
+#include "Quest/Renderer/Texture.h"
 #include "Quest/Renderer/OrthographicCamera.h"
 
 // ---------- ENTRY POINT ----------
