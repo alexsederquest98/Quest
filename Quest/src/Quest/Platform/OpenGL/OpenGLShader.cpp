@@ -19,20 +19,23 @@ namespace Quest
 
 	OpenGLShader::OpenGLShader(const std::string& filepath)
 	{
+		// Extract name from file path
+		auto lastSlash = filepath.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		auto lastDot = filepath.rfind('.');
+		auto count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
+		m_Name = filepath.substr(lastSlash, count);
+
 		std::string shaderSource = ReadFile(filepath);
 		auto shaderSources = PreProcess(shaderSource);
 		Compile(shaderSources);
 	}
-	OpenGLShader::OpenGLShader(const std::string& vertexFilepath, const std::string& fragmentFilepath)
-	{
-		QE_CORE_ERROR("This constructor overload is not implemented yet");
-	}
 
-	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexFilepath, const std::string& fragmentFilepath)
 		: m_Name(name)
 	{
-		m_Sources[GL_VERTEX_SHADER] = vertexSource;
-		m_Sources[GL_FRAGMENT_SHADER] = fragmentSource;
+		m_Sources[GL_VERTEX_SHADER] = vertexFilepath;
+		m_Sources[GL_FRAGMENT_SHADER] = fragmentFilepath;
 
 		Compile(m_Sources);
 	}
@@ -97,7 +100,8 @@ namespace Quest
 	void OpenGLShader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
 	{
 		uint32_t program = glCreateProgram();
-		std::vector<GLenum> glShaderIDs(shaderSources.size());
+		std::vector<GLenum> glShaderIDs; // TODO: Look into using std::array instead of std::vector
+		glShaderIDs.reserve(shaderSources.size());
 		for (auto& kv : shaderSources)
 		{
 			GLenum type = kv.first;
@@ -154,6 +158,9 @@ namespace Quest
 			QE_CORE_ASSERT(false, "Shader link failure");
 			return;
 		}
+
+		for (auto id : glShaderIDs)
+			glDetachShader(program, id);
 
 		m_RendererID = program;
 	}

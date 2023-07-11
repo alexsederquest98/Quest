@@ -36,72 +36,7 @@ public:
 		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
-		std::string vsrc = R"(
-			#version 460 core
-			layout (location = 0) in vec3 a_Position;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;			
-
-			out vec3 v_Position;
-
-			void main()
-			{
-				v_Position = a_Position;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-
-		std::string fSrc = R"(
-			#version 460 core
-			layout(location = 0) out vec4 color;
-			
-			in vec3 v_Position;
-
-			uniform vec3 u_Color;
-
-			void main()
-			{
-				color = vec4(u_Color, 1.0);
-			}
-		)";
-
-		std::string textureShaderVSrc = R"(
-			#version 460 core
-			layout (location = 0) in vec3 a_Position;
-			layout (location = 1) in vec2 a_TexCoord;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;			
-
-			out vec2 v_TexCoord;
-
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-
-		std::string textureShaderFSrc = R"(
-			#version 460 core
-			layout(location = 0) out vec4 color;
-			
-			in vec2 v_TexCoord;
-
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_Shader = Quest::Shader::Create("Square", vsrc, fSrc);
-		m_TextureShader = Quest::Shader::Create("Square", textureShaderVSrc, textureShaderFSrc);
-		//m_TextureShader = Quest::Shader::Create("assets/shaders/Texture.glsl");
+		m_TextureShader = Quest::Shader::Create("assets/shaders/Texture.glsl");
 
 		m_Texture = Quest::Texture2D::Create("assets/textures/Checkerboard.png");
 
@@ -140,8 +75,6 @@ public:
 		glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
 		glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
 
-		m_Shader->Bind();
-		m_Shader->SetVec3("u_Color", m_SquareColor);
 
 		/*for (int y = 0; y < 20; y++)
 		{

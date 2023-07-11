@@ -12,7 +12,6 @@ namespace Quest
 	{
 	public:
 		OpenGLShader(const std::string& filepath);
-		OpenGLShader(const std::string& vertexFilepath, const std::string& fragmentFilepath);
 		OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource);
 		virtual ~OpenGLShader();
 
@@ -24,6 +23,8 @@ namespace Quest
 		virtual void SetVec3(const std::string& name, const glm::vec3& value) override;
 		virtual void SetVec4(const std::string& name, const glm::vec4& value) override;
 		virtual void SetMat4(const std::string& name, const glm::mat4& value) override;
+
+		virtual const std::string& GetName() const override { return m_Name; }
 		virtual const uint32_t GetID() const override;
 	private:
 		std::string ReadFile(const std::string& filepath);

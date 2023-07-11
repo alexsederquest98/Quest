@@ -29,7 +29,7 @@ namespace Quest
 		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_TRUE);
 	#endif
 
-		QE_CORE_WARN("hi in api init");
+		QE_CORE_INFO("OpenGLRendererAPI Initialized");
 		// Enable global state features of OpenGL
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

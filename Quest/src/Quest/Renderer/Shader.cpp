@@ -7,6 +7,7 @@
 
 namespace Quest
 {
+	// SHADER
 	Ref<Shader> Shader::Create(const std::string& filepath)
 	{
 		switch (Renderer::GetAPI())
@@ -18,25 +19,53 @@ namespace Quest
 		return nullptr;
 	}
 
-	Ref<Shader> Shader::Create(const std::string& vertexFilepath, const std::string& fragmentFilepath)
+	Ref<Shader> Shader::Create(const std::string& name, const std::string& vertexFilepath, const std::string& fragmentFilepath)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::NONE:	QE_CORE_ASSERT(false, "RenderAPI::NONE is not supported"); return nullptr;
-		case RendererAPI::API::OPENGL:	return CreateRef<OpenGLShader>("vertexFilePath", "fragmentFilePath");
+		case RendererAPI::API::OPENGL:	return CreateRef<OpenGLShader>(name, "vertexFilePath", "fragmentFilePath");
 		}
 
 		return nullptr;
 	}
 
-	Ref<Shader> Shader::Create(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource)
-	{
-		switch (Renderer::GetAPI())
-		{
-		case RendererAPI::API::NONE:	QE_CORE_ASSERT(false, "RenderAPI::NONE is not supported"); return nullptr;
-		case RendererAPI::API::OPENGL:	return CreateRef<OpenGLShader>(name, vertexSource, fragmentSource);
-		}
 
-		return nullptr;
+	// SHADER LIBRARY
+	void ShaderLibrary::Add(const Ref<Shader>& shader)
+	{
+		auto& name = shader->GetName();
+		Add(name, shader);
+	}
+	
+	void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
+	{
+		QE_CORE_ASSERT(!ShaderExists(name), "Shader already exists");
+		m_Shaders[name] = shader;
+	}
+
+	Ref<Shader> ShaderLibrary::Load(const std::string& filepath)
+	{
+		auto shader = Shader::Create(filepath);
+		Add(shader);
+		return shader;
+	}
+
+	Ref<Shader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
+	{
+		auto shader = Shader::Create(filepath);
+		Add(name, shader);
+		return shader;
+	}
+
+	Ref<Shader> ShaderLibrary::Get(const std::string& name)
+	{
+		QE_CORE_ASSERT(ShaderExists(name), "Shader not found");
+		return m_Shaders[name];
+	}
+
+	bool ShaderLibrary::ShaderExists(const std::string& name) const
+	{
+		return m_Shaders.find(name) != m_Shaders.end();
 	}
 }
