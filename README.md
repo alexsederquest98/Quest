@@ -7,6 +7,7 @@ I recommend using Visual Studio 2022 as that is being used to develop Quest. It 
 
 **1. Downloading the repository**
 Start with cloning the repository with `git clone --recursive https://github.com/alexsederquest98/Quest.git`
+
 The recursive cloning is necessary to add the 3rd-party library submodules. If you did not clone it recursively, you can get the submodules with `git submodule update --init` instead.
 
 **2. Setup the solution**
@@ -29,6 +30,10 @@ I will already assume you have the VulkanSDK downloaded and the `VULKAN_SDK` env
 - Audio system integration
 - Physics system integration
 - Linux support (maybe)
+
+# Maintenance Items
+- Clean up includes
+- Redo OpenGL implementation in OpenGL 4.6 AZDO DSA 
 
 ***
 ## 3rd Party Libraries
