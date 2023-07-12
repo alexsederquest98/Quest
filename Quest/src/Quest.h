@@ -13,13 +13,15 @@
 
 #include "Quest/ImGui/ImGuiLayer.h"
 
+#include "Quest/Renderer/OrthographicCamera.h"
+
 #include "Quest/Renderer/Renderer.h"
 #include "Quest/Renderer/RenderCommand.h"
 #include "Quest/Renderer/Buffer.h"
 #include "Quest/Renderer/VertexArray.h"
 #include "Quest/Renderer/Shader.h"
 #include "Quest/Renderer/Texture.h"
-#include "Quest/Renderer/OrthographicCamera.h"
+#include "Quest/Renderer/OrthographicCameraController.h"
 
 // ---------- ENTRY POINT ----------
 #include "Quest/Core/EntryPoint.h"

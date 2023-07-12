@@ -6,7 +6,7 @@ class SandboxLayer : public Quest::Layer
 {
 public:
 	SandboxLayer()
-		: Layer("Test Layer"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f, 0.0f, 0.0f), m_SquarePos(0.0f)
+		: Layer("Test Layer"), m_CameraController(1920.0f / 1080.0f)
 	{
 
 		float vertices[] = {
@@ -48,28 +48,15 @@ public:
 	void OnUpdate(Quest::Timestep timestep) override
 	{
 		//QE_TRACE("Delta time: {0}", timestep.GetMiliseconds());
+		
+		// Update
+		m_CameraController.OnUpdate(timestep);
 
-		if (Quest::Input::IsKeyPressed(Quest::Key::Left))
-			m_CameraPosition.x -= m_CameraSpeed * timestep;
-		else if (Quest::Input::IsKeyPressed(Quest::Key::Right))
-			m_CameraPosition.x += m_CameraSpeed * timestep;
-		if (Quest::Input::IsKeyPressed(Quest::Key::Up))
-			m_CameraPosition.y += m_CameraSpeed * timestep;
-		else if (Quest::Input::IsKeyPressed(Quest::Key::Down))
-			m_CameraPosition.y -= m_CameraSpeed * timestep;
-
-		if (Quest::Input::IsKeyPressed(Quest::Key::A))
-			m_CameraRotation += m_CameraRotationSpeed * timestep;
-		if (Quest::Input::IsKeyPressed(Quest::Key::D))
-			m_CameraRotation -= m_CameraRotationSpeed * timestep;
-
+		// Render
 		Quest::RenderCommand::SetClearColor({ 0.05f, 0.05f, 0.05f, 1.0f });
 		Quest::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Quest::Renderer::BeginScene(m_Camera);
+		Quest::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -96,6 +83,7 @@ public:
 
 	void OnEvent(Quest::Event& event) override
 	{
+		m_CameraController.OnEvent(event);
 	}
 
 	virtual void OnImGuiRender() override
@@ -110,13 +98,7 @@ private:
 
 	Quest::Ref<Quest::Texture2D> m_Texture;
 
-	Quest::OrthographicCamera m_Camera;
-
-	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 1.0f;
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 10.0f;
-	glm::vec3 m_SquarePos;
+	Quest::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f};
 };
