@@ -17,12 +17,12 @@ I will already assume you have the VulkanSDK downloaded and the `VULKAN_SDK` env
 
 ***
 ## Features
+- 2D rendering system
 - ImGui system integration that comes already setup
 - Logging system for Engine and Application (client)
 - Layer system to run client code through the Engine's update loop
 
 ## Planned Features
-- 2D rendering system
 - 3D PBR rendering system
 - Editor program
 - Integrated scripting language (Lua or C#)
