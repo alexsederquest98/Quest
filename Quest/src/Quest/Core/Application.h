@@ -24,8 +24,6 @@ namespace Quest
 		Application();
 		virtual ~Application();
 
-		void Run();
-
 		void OnEvent(Event& e);
 		
 		void PushLayer(Layer* layer);
@@ -38,11 +36,13 @@ namespace Quest
 
 		void Close();
 	private:
+		void Run();
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
 		Scope<Window> m_Window;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;

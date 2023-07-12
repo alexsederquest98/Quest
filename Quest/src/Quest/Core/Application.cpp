@@ -40,15 +40,19 @@ namespace Quest
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			// Update layers
-			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(timestep);
+			// Run the updates if the window is not minimized
+			if (!m_Minimized)
+			{
+				// Update layers
+				for (Layer* layer : m_LayerStack)
+					layer->OnUpdate(timestep);
 
-			// Update ImGui layer
-			m_ImGuiLayer->BeginFrame();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->EndFrame();
+				// Update ImGui layer
+				m_ImGuiLayer->BeginFrame();
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
+				m_ImGuiLayer->EndFrame();
+			}
 
 			m_Window->OnUpdate();
 		}
@@ -95,6 +99,15 @@ namespace Quest
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
 		return false;
 	}
 }
