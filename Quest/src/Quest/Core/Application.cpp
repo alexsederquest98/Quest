@@ -36,7 +36,7 @@ namespace Quest
 		while (m_Running)
 		{
 			// Frame time stuff
-			float time = Time::GetTime();
+			float time = Utility::Time::GetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 

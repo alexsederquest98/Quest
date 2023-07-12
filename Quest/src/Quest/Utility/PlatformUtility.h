@@ -2,9 +2,12 @@
 
 namespace Quest
 {
-	class Time
+	namespace Utility
 	{
-	public:
-		static float GetTime();
-	};
+		class Time
+		{
+		public:
+			static float GetTime();
+		};
+	}
 }

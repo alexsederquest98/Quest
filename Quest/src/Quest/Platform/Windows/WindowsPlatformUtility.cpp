@@ -5,8 +5,11 @@
 
 namespace Quest
 {
-	float Time::GetTime()
+	namespace Utility
 	{
-		return glfwGetTime();
+		float Time::GetTime()
+		{
+			return glfwGetTime();
+		}
 	}
 }
