@@ -1,4 +1,7 @@
 #include <Quest.h>
+#include <Quest/Core/EntryPoint.h>
+
+#include "Sandbox2D.h"
 
 #include "imgui/imgui.h"
 
@@ -106,8 +109,8 @@ private:
 class Sandbox : public Quest::Application {
 public:
 	Sandbox() {
-		PushLayer(new SandboxLayer());
-		//PushLayer(new InputLayerTest());
+		//PushLayer(new SandboxLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() {

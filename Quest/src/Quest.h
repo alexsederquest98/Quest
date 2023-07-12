@@ -1,7 +1,7 @@
 #pragma once
 
 // For use by Quest applications
-//#include "Quest/Core/Base.h"
+#include "Quest/Core/Base.h"
 
 #include "Quest/Core/Application.h"
 #include "Quest/Core/Layer.h"
@@ -22,6 +22,3 @@
 #include "Quest/Renderer/Shader.h"
 #include "Quest/Renderer/Texture.h"
 #include "Quest/Renderer/OrthographicCameraController.h"
-
-// ---------- ENTRY POINT ----------
-#include "Quest/Core/EntryPoint.h"
