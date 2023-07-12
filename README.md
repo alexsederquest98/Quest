@@ -42,3 +42,4 @@ I will already assume you have the VulkanSDK downloaded and the `VULKAN_SDK` env
 - [glm](https://github.com/g-truc/glm) - Math library
 - [spdlog](https://github.com/gabime/spdlog) - Logging library
 - [imgui](https://github.com/ocornut/imgui) - Fast UI library
+- [stbi](https://github.com/nothings/stb) - stbi_image for texture loading
