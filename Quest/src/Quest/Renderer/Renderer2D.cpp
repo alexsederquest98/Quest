@@ -57,7 +57,7 @@ namespace Quest
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
 		s_Data.FlatColorShader->Bind();
-		s_Data.FlatColorShader->SetVec4("u_Color", color);
+		s_Data.FlatColorShader->SetFloat4("u_Color", color);
 
 		s_Data.QuadVertexArray->Bind();
 		RenderCommand::DrawElements(s_Data.QuadVertexArray);
