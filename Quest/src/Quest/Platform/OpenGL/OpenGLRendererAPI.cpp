@@ -35,7 +35,7 @@ namespace Quest
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_ALWAYS);
+		//glDepthFunc(GL_ALWAYS);
 		glEnable(GL_LINE_SMOOTH);
 	}
 

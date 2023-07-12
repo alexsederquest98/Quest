@@ -20,6 +20,8 @@ private:
 	Quest::Ref<Quest::IndexBuffer> m_IndexBuffer;
 	Quest::Ref<Quest::VertexArray> m_VertexArray;
 	Quest::Ref<Quest::Shader> m_Shader;
+
+	Quest::Ref<Quest::Texture2D> m_Texture;
 	
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 };
