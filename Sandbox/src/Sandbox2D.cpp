@@ -11,33 +11,6 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	float vertices[] = {
-			 0.5f,  0.5f, 0.0f, // top right
-			 0.5f, -0.5f, 0.0f, // bottom right
-			-0.5f, -0.5f, 0.0f, // bottom left
-			-0.5f,  0.5f, 0.0f  // top left 
-	};
-
-	unsigned int indices[] = { 0, 1, 3, 1, 2, 3 };
-
-	// Setup the vertex array
-	m_VertexArray = Quest::VertexArray::Create();
-
-	// Setup vertex buffer
-	m_VertexBuffer = Quest::VertexBuffer::Create(vertices, sizeof(vertices));
-	Quest::BufferLayout layout = {
-		{ Quest::ShaderDataType::Vec3, "a_Position" }
-	};
-	m_VertexBuffer->SetLayout(layout);
-
-	// Setup the index buffer
-	m_IndexBuffer = Quest::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
-
-	// Populate vertex array
-	m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-	m_VertexArray->SetIndexBuffer(m_IndexBuffer);
-
-	m_Shader = Quest::Shader::Create("assets/shaders/FlatColorShader.glsl");
 }
 
 void Sandbox2D::OnDetach()
@@ -53,14 +26,9 @@ void Sandbox2D::OnUpdate(Quest::Timestep timestep)
 	Quest::RenderCommand::SetClearColor({ 0.05f, 0.05f, 0.05f, 1.0f });
 	Quest::RenderCommand::Clear();
 
-	Quest::Renderer::BeginScene(m_CameraController.GetCamera());
-
-	m_Shader->Bind();
-	m_Shader->SetVec4("u_Color", m_SquareColor);
-
-	Quest::Renderer::Submit(m_Shader, m_VertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-	Quest::Renderer::EndScene();
+	Quest::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	Quest::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	Quest::Renderer2D::EndScene();
 
 }
 

@@ -15,6 +15,7 @@
 
 #include "Quest/Renderer/OrthographicCamera.h"
 
+#include "Quest/Renderer/Renderer2D.h"
 #include "Quest/Renderer/Renderer.h"
 #include "Quest/Renderer/RenderCommand.h"
 #include "Quest/Renderer/Buffer.h"

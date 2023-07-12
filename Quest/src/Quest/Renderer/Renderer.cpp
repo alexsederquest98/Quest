@@ -1,5 +1,6 @@
 #include "qepch.h"
 #include "Quest/Renderer/Renderer.h"
+#include "Quest/Renderer/Renderer2D.h"
 
 namespace Quest
 {
@@ -8,6 +9,7 @@ namespace Quest
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::Shutdown()
