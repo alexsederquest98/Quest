@@ -33,6 +33,7 @@ I will already assume you have the VulkanSDK downloaded and the `VULKAN_SDK` env
 
 # Maintenance Items
 - Clean up includes
+- Redo event system with some kind of buffering system
 - Redo OpenGL implementation in OpenGL 4.6 AZDO DSA 
 
 ***
