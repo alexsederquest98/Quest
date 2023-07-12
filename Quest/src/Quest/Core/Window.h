@@ -5,7 +5,6 @@
 
 #include "Quest/Renderer/RenderingContext.h"
 
-#include <GLFW/glfw3.h>
 #include <string>
 
 namespace Quest
@@ -16,50 +15,32 @@ namespace Quest
 		uint32_t width;
 		uint32_t height;
 
-		WindowProperties(const std::string& _title = "Quest Engine", uint32_t  _width = 1920, uint32_t _height = 1080)
+		WindowProperties(const std::string& _title = "Quest Engine",
+			uint32_t  _width = 1920, 
+			uint32_t _height = 1080)
 			: title(_title), width(_width), height(_height)
 		{
 		}
 	};
 
+	// Window interface
 	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 
-		Window(const WindowProperties& props);
-		~Window();
+		virtual ~Window() = default;
 		
-		void OnUpdate();
+		virtual void OnUpdate() = 0;
 
-		inline uint32_t GetWidth() { return m_Data.width; }
-		inline uint32_t GetHeight() { return m_Data.height; }
+		virtual uint32_t GetWidth() const = 0;
+		virtual uint32_t GetHeight() const = 0;
 
-		void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
-		void SetVSync(bool enabled);
-		bool IsVSync() { return m_Data.vsync; };
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
+		virtual void SetVSync(bool enabled) = 0;
+		virtual bool IsVSync() const = 0;
 
-		GLFWwindow* GetWindow() { return m_Window; }
-		static Scope<Window> Create(const WindowProperties& props = WindowProperties());
-	private:
-		void Init(const WindowProperties& props);
-		void Shutdown();
-		
-	private:
-		GLFWwindow* m_Window;
-		Scope<RenderingContext> m_Context;
-
-		struct WindowData
-		{
-			std::string title;
-			uint32_t width;
-			uint32_t height;
-			bool vsync;
-
-			EventCallbackFn EventCallback;
-		};
-
-		WindowData m_Data;
-
+		virtual void* GetNativeWindow() const = 0;
+		static Scope<Window> Create(const WindowProperties& props = WindowProperties());	
 	};
 }

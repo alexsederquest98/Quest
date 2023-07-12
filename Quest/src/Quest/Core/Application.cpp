@@ -5,6 +5,7 @@
 #include "Quest/Core/Logger.h"
 
 #include "Quest/Renderer/Renderer.h"
+#include "Quest/Utility/PlatformUtility.h"
 
 namespace Quest
 {
@@ -35,7 +36,7 @@ namespace Quest
 		while (m_Running)
 		{
 			// Frame time stuff
-			float time = (float)glfwGetTime();
+			float time = Time::GetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 

@@ -78,18 +78,21 @@ project "Quest"
 
     filter "configurations:Debug"
         defines "QE_DEBUG"
-        buildoptions "/MDd"
-        symbols "On"
+        runtime "Debug"
+        --buildoptions "/MDd"
+        symbols "on"
 
     filter "configurations:Release"
         defines "QE_RELEASE"
-        buildoptions "/MD"
-        optimize "On"
+        runtime "Release"
+        --buildoptions "/MD"
+        optimize "on"
 
     filter "configurations:Distribution"
         defines "QE_DIST"
-        buildoptions "/MD"
-        optimize "On"
+        runtime "Release"
+        --buildoptions "/MD"
+        optimize "on"
 
 project "Sandbox"
     location "Sandbox"
@@ -110,7 +113,7 @@ project "Sandbox"
         "Quest/vendor/spdlog/include",
         "Quest/src",
         "Quest/vendor/",
-        "Quest/vendor/glfw/include",
+        --"Quest/vendor/glfw/include",
         "Quest/vendor/glm"
     }
 
@@ -123,12 +126,15 @@ project "Sandbox"
         
     filter "configurations:Debug"
         defines "QE_DEBUG"
-        symbols "On"
+        runtime "Debug"
+        symbols "on"
 
     filter "configurations:Release"
         defines "QE_RELEASE"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 
     filter "configurations:Distribution"
         defines "QE_DIST"
-        optimize "On"
+        runtime "Release"
+        optimize "on"

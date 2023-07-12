@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Quest/Core/Base.h"
-#include <GLFW/glfw3.h>
+
 
 namespace Quest
 {
@@ -15,6 +15,6 @@ namespace Quest
 		virtual void WaitForDevice() = 0;
 		virtual void SwapBuffers() = 0;
 
-		static Scope<RenderingContext> Create(GLFWwindow* window);
+		static Scope<RenderingContext> Create(void* window);
 	};
 }

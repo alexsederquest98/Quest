@@ -7,12 +7,12 @@
 namespace Quest
 {
 
-	Scope<RenderingContext> RenderingContext::Create(GLFWwindow* window)
+	Scope<RenderingContext> RenderingContext::Create(void* window)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::NONE:    QE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OPENGL:	return CreateScope<OpenGLContext>(window);
+		case RendererAPI::API::OPENGL:	return CreateScope<OpenGLContext>(static_cast<GLFWwindow*>(window));
 		}
 
 		QE_CORE_ASSERT(false, "Invalid RendererAPI");
