@@ -5,6 +5,8 @@
 #include "Quest/Renderer/VertexArray.h"
 #include "Quest/Renderer/Shader.h"
 
+#include <glm/gtc/matrix_transform.hpp>
+
 namespace Quest
 {
 	struct Renderer2DData
@@ -45,7 +47,6 @@ namespace Quest
 	{
 		s_Data.FlatColorShader->Bind();
 		s_Data.FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-		s_Data.FlatColorShader->SetMat4("u_Transform", glm::mat4(1.0f));
 	}
 	void Renderer2D::EndScene()
 	{
@@ -58,6 +59,12 @@ namespace Quest
 	{
 		s_Data.FlatColorShader->Bind();
 		s_Data.FlatColorShader->SetFloat4("u_Color", color);
+
+		// transform = translation * rotation * scale
+		// TODO: add rotation here
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * 
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+		s_Data.FlatColorShader->SetMat4("u_Transform", transform);
 
 		s_Data.QuadVertexArray->Bind();
 		RenderCommand::DrawElements(s_Data.QuadVertexArray);
