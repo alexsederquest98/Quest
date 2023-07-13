@@ -5,6 +5,17 @@
 
 namespace Quest
 {
+	Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::NONE:	QE_CORE_ASSERT(false, "RenderAPI::NONE is not supported"); return nullptr;
+		case RendererAPI::API::OPENGL:	return CreateRef<OpenGLTexture2D>(width, height);
+		}
+
+		return nullptr;
+	}
+
 	Ref<Texture2D> Texture2D::Create(const std::string& path)
 	{
 		switch (Renderer::GetAPI())
