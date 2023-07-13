@@ -27,8 +27,8 @@ namespace Quest
 		s_RendererAPI->Clear();
 	}
 
-	void RenderCommand::DrawElements(const Ref<VertexArray>& vertexArray)
+	void RenderCommand::DrawElements(const Ref<VertexArray>& vertexArray, uint32_t count)
 	{
-		s_RendererAPI->DrawElements(vertexArray);
+		s_RendererAPI->DrawElements(vertexArray, count);
 	}
 }
