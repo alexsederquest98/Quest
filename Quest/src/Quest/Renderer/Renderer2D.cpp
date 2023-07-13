@@ -30,8 +30,8 @@ namespace Quest
 
 		Ref<VertexBuffer> quadVertexBuffer = VertexBuffer::Create(quadVertices, sizeof(quadVertices));
 		quadVertexBuffer->SetLayout({
-			{ ShaderDataType::Vec3, "a_Position" },
-			{ ShaderDataType::Vec2, "a_TexCoord" }
+			{ ShaderDataType::Float3, "a_Position" },
+			{ ShaderDataType::Float2, "a_TexCoord" }
 		});
 		s_Data.QuadVertexArray->AddVertexBuffer(quadVertexBuffer);
 

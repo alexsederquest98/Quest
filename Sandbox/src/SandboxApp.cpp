@@ -27,8 +27,8 @@ public:
 		// Setup vertex buffer
 		m_VertexBuffer = Quest::VertexBuffer::Create(vertices, sizeof(vertices));
 		Quest::BufferLayout layout = {
-			{ Quest::ShaderDataType::Vec3, "a_Position" },
-			{ Quest::ShaderDataType::Vec2, "a_TexCoord" }
+			{ Quest::ShaderDataType::Float3, "a_Position" },
+			{ Quest::ShaderDataType::Float2, "a_TexCoord" }
 		};
 		m_VertexBuffer->SetLayout(layout);
 
