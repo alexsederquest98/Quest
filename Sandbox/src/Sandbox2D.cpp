@@ -20,6 +20,7 @@ void Sandbox2D::OnDetach()
 
 void Sandbox2D::OnUpdate(Quest::Timestep timestep)
 {
+	QE_PROFILE_FUNCTION();
 	// Update
 	m_CameraController.OnUpdate(timestep);
 

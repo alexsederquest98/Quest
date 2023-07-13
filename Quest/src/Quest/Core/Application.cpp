@@ -33,6 +33,7 @@ namespace Quest
 
 	void Application::Run()
 	{
+		QE_PROFILE_FUNCTION();
 		while (m_Running)
 		{
 			// Frame time stuff

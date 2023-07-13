@@ -20,6 +20,7 @@
 
 #include "Quest/Core/Base.h"
 #include "Quest/Core/Logger.h"
+#include "Quest/Utility/Instrumentor.h"
 
 // Platform specific headers
 #ifdef QE_PLATFORM_WINDOWS
